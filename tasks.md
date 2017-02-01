@@ -1,26 +1,39 @@
 # Project Tasks
 
+## Schedule
+Week 1 (Jan 30 - Feb 3)  
+ 1. Design a survery to determine what information would be useful  
+ 2. Research the how copy/paste works
+ 
+Week 2 (Feb 6 - Feb 10)  
+Week 3 (Feb 13 - Feb 17)  
+Week 4 (Feb 20 - Feb 24)
+ 
 ## Deliverables
-Week 1: Plan pilot study to determine what should be shown 
- a. What information can is available from SO?
- b. Survery with list of possible info items (what would be useful -- a rating) _and_ show different permuatations (presentation of aforemention result)
- c. Generate survey.
- d. Research how to build the tool
- e. What does the tool need to do specifically?
-   - how to put stuff on the clipboard
- 
-By next Wednesday:
- - collect survey results.
- - estimate effort for implementing tool
+D1 (Due Feb 9)  
+ - [ ] Design survey
+ - [ ] Clear it with Reid
+ - [ ] Send survey
+ - [ ] Collect results
+ - [ ] Research the copy/paste operator (how much effort
  
  
- Goal:
+### D1
+ 1. What are all the possible INFO tags? Which ones of these should we keep?
+ 1. What information is available from SO?
+ 2. Survery with list of possible info items (what would be useful -- a rating) _and_ show different permuatations (presentation of aforemention result) and there should be a general question for how useful having extra information would be.
+ 3. Generate survey.
+ 4. Research how to build the tool
+ 5. What does the tool need to do specifically?
+   - how to put stuff on the clipboard 
+ 
+ Goals:
   - enrich clipboard with stuff from SO
   - Can we get the google search?
   - Find a way to paste the stuff in a formatted way (including creating a file and adding the clipboard content)
   - These need to be done without breaking standard copy/paste
   
-  Target System:
+ Target System:
    - Linux
    - Ruby?
   
