@@ -6,8 +6,8 @@ For the following questions, imagine the following story: a developer has to cho
 
 1.) Would it be useful to have the story above available during the code review?
 
-2.) What elements would you consider useful? Please rate the following.
-- Google search query
+2.) What elements from the above story would you consider useful? Please rate.
+- Google search query leading to StackOverflow
 - StackOverflow question URL
 - StackOverflow question heading
 - StackOverflow question content
