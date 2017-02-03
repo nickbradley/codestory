@@ -14,8 +14,8 @@ For the following questions, imagine the following story: a developer has to cho
 - StackOverflow answer URL
 - Time of access of StackOverflow page
 - StackOverflow answer code snippet
-- Entire Stackoverflow answer
-- Stackoverflow answer rating
-- Stackoverflow answer acceptance status
+- Entire StackOverflow answer
+- StackOverflow answer rating
+- StackOverflow answer acceptance status
 - StackOverflow answer comments
 - Other StackOverflow answers
