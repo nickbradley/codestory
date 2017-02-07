@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         CodeSurvey
+// @name         CodeStory
 // @namespace    http://tampermonkey.net/
 // @version      0.1
 // @description  Copy more stuff from StackOverflow
@@ -7,8 +7,9 @@
 // @match        *://*stackoverflow.com/*
 // @grant        none
 // ==/UserScript==
-
 (function() {
+
+	var NAME = "CodeStory";
 
 	var pageAccessTime;
 
@@ -18,11 +19,17 @@
 	};
 
 	var collectors = {
+		origin: function(e) {
+			return NAME;
+		},
+		originalSelection: function(e) {
+			return window.getSelection().toString();
+		},
 		questionUrl: function(e) {
 			return window.location.href;
 		},
 		questionContent: function(e) {
-			return $('#question .post-text').html();
+			return $('#question .post-text').text();
 		},
 		answerUrl: function(e) {
 			var fullUrl = null;
@@ -40,16 +47,21 @@
 		accessTime: function(e) {
 			return pageAccessTime;
 		},
-		copiedCodeSnippet: function(e) {
+		fullCodeSnippet: function(e) {
 			var snippet = null;
 			var $pre = $(e.target).closest('pre.prettyprint');
 			if ($pre.length) {
-				snippet = $pre.html();
+				snippet = $pre.text();
 			}
 			return snippet;
 		},
 		answerContent: function(e) {
-			return $getAnswer(e).html();
+			var content = null;
+			var $answer = $getAnswer(e);
+			if ($answer.length) {
+				content = $answer.find('.post-text').text();
+			}
+			return content;
 		},
 		votes: function(e) {
 			var votes = null;
@@ -76,10 +88,12 @@
 
 	function onCopy(e) {
 		var collectedValues = {};
+		var clipboard = e.originalEvent.clipboardData;
 		$.each(collectors, function(collectorKey, collectorFn) {
 			collectedValues[collectorKey] = collectorFn(e);
 		});
-		console.log(collectedValues);
+		e.preventDefault();
+		clipboard.setData('text/plain', JSON.stringify(collectedValues));
 	}
 
 	$(document).on('copy', '.post-text', onCopy);
