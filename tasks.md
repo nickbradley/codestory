@@ -5,8 +5,17 @@ Week 1 (Jan 30 - Feb 3)
  1. Design a survery to determine what information would be useful  
  2. Research the how copy/paste works
  
-Week 2 (Feb 6 - Feb 10)  
-Week 3 (Feb 13 - Feb 17)  
+Week 2 (Feb 6 - Feb 16)  
+ 1. Create new key binding in Atom to paste the content from the clipboard and also query our web service.
+ 2. Backend
+     - Need a way to determine from request  
+     - Web server (API - POST (../so/) and GET (../so/<hash>)  no <hash> means latest copied value; user ip in header)
+     - Database
+ 2. Finish Chrome extension for copying on SO  
+ 3. Start designing experiment (outline of experiment)
+ 4. Outline paper (high-level) + setup latex
+ 
+Week 3 (Feb 17 - Feb 17)  
 Week 4 (Feb 20 - Feb 24)
  
 ## Deliverables
