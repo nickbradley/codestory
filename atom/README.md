@@ -7,4 +7,4 @@ CodeStory paste functionality. This will eventually be moved to a package.
 
 `keymap.cson` binds `ctrl-shift-v` to the command `custom:codestory-paste`. You
 can define any other binding you want, or just type the command name in Atom's
-command pallette (ctrl-shift-p).
+command palette (ctrl-shift-p).
