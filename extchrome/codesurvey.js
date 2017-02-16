@@ -1,15 +1,4 @@
-// ==UserScript==
-// @name         CodeStory
-// @namespace    http://tampermonkey.net/
-// @version      0.1
-// @description  Copy more stuff from StackOverflow
-// @author       Nick & Felix
-// @match        *://*stackoverflow.com/*
-// @grant        none
-// ==/UserScript==
-(function() {
-
-	var NAME = "CodeStory";
+var CodeStory = (function() {
 
 	var pageAccessTime;
 
@@ -20,7 +9,31 @@
 
 	var collectors = {
 		origin: function(e) {
-			return NAME;
+			return "stackoverflow";
+		},
+		copiedFrom: function(e) {
+			var ret = null;
+			var $container = $(e.target).closest('.question, .answer');
+			if ($container.length) {
+				if ($container.hasClass('question')) {
+					ret = 'question';
+				} else {
+					ret = 'answer';
+				}
+			}
+			return ret;
+		},
+		type: function(e) {
+			var type = 'text';
+			var startNode, range;
+			var selection = window.getSelection();
+			if (selection) {
+				range = selection.getRangeAt(0);
+				if (range && range.commonAncestorContainer && $(range.commonAncestorContainer).is('code')) {
+					type = 'code';
+				}
+			}
+			return type;
 		},
 		originalSelection: function(e) {
 			return window.getSelection().toString();
@@ -65,10 +78,10 @@
 		},
 		votes: function(e) {
 			var votes = null;
-			var $answer = $getAnswer(e);
-			if ($answer.length) {
+			var $container = $(e.target).closest('.question, .answer');
+			if ($container.length) {
 				try {
-					votes = parseInt($answer.find('.vote-count-post').text(), 10);
+					votes = parseInt($container.find('.vote-count-post').text(), 10);
 				} catch (e) {
 					// leave null
 				}
@@ -86,20 +99,23 @@
 
 	};
 
-	function onCopy(e) {
+	function fromStackoverflow(copyEvent) {
 		var collectedValues = {};
-		var clipboard = e.originalEvent.clipboardData;
+		pageAccessTime = new Date().getTime();
 		$.each(collectors, function(collectorKey, collectorFn) {
-			collectedValues[collectorKey] = collectorFn(e);
+			collectedValues[collectorKey] = collectorFn(copyEvent);
 		});
-		e.preventDefault();
-		clipboard.setData('text/plain', JSON.stringify(collectedValues));
+		return collectedValues;
 	}
 
-	$(document).on('copy', '.post-text', onCopy);
+	function send(hash, data) {
+		console.log("Sending: " + hash);
+		console.log(data);
+	}
 
-	$(document).ready(function() {
-		pageAccessTime = new Date().getTime();
-	});
+	return {
+		fromStackoverflow: fromStackoverflow,
+		send: send
+	};
 
 }());
