@@ -1,0 +1,12 @@
+{
+  "manifest_version": 2,
+  "name": "CodeStory",
+  "description": "Improves code reviews and maintenance",
+  "version": "0.1",
+  "content_scripts": [
+    {
+      "matches": ["http://stackoverflow.com/*"],
+      "js": ["md5.js", "jquery.js", "codesurvey.js", "chrome-init.js"]
+    }
+  ]
+}
