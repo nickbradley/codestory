@@ -8,8 +8,8 @@
     "sourceMap": true
   },
   "filesGlob": [
-    "/src/**/*.ts",
-    "/test/**/*.ts"
+    "**/src/**/*.ts",
+    "/service/test/**/*.ts"
   ],
   "exclude": [
     "node_modules"

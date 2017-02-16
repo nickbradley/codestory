@@ -6,6 +6,7 @@
 import restify = require('restify');
 
 import Log from "../Util";
+import RouteHandler from "./RouteHandler";
 //import {InsightResponse} from "../controller/IInsightFacade";
 
 /**
@@ -51,7 +52,7 @@ export default class Server {
                 Log.info('Server::start() - start');
 
                 that.rest = restify.createServer({
-                    name: 'insightUBC'
+                    name: 'codestory'
                 });
 
                 that.rest.get('/', function (req: restify.Request, res: restify.Response, next: restify.Next) {
@@ -59,12 +60,18 @@ export default class Server {
                     return next();
                 });
 
+                that.rest.post('/', restify.bodyParser(), RouteHandler.postSnippet);
+
+
+
                 // provides the echo service
                 // curl -is  http://localhost:4321/echo/myMessage
                 //that.rest.get('/echo/:msg', Server.echo);
 
                 // Other endpoints will go here
                 that.rest.get('/so/123', Server.stackoverflow);
+
+
 
                 that.rest.listen(that.port, function () {
                     Log.info('Server::start() - restify listening: ' + that.rest.url);
@@ -83,30 +90,8 @@ export default class Server {
         });
     }
 
-    // The next two methods handle the echo service.
-    // These are almost certainly not the best place to put these, but are here for your reference.
-    // By updating the Server.echo function pointer above, these methods can be easily moved.
 
-    // public static echo(req: restify.Request, res: restify.Response, next: restify.Next) {
-    //     Log.trace('Server::echo(..) - params: ' + JSON.stringify(req.params));
-    //     try {
-    //         let result = Server.performEcho(req.params.msg);
-    //         Log.info('Server::echo(..) - responding ' + result.code);
-    //         res.json(result.code, result.body);
-    //     } catch (err) {
-    //         Log.error('Server::echo(..) - responding 400');
-    //         res.json(400, {error: err.message});
-    //     }
-    //     return next();
-    // }
-    //
-    // public static performEcho(msg: string): InsightResponse {
-    //     if (typeof msg !== 'undefined' && msg !== null) {
-    //         return {code: 200, body: {message: msg + '...' + msg}};
-    //     } else {
-    //         return {code: 400, body: {error: 'Message not provided'}};
-    //     }
-    // }
+
 
     public static stackoverflow(req: restify.Request, res: restify.Response, next: restify.Next) {
         Log.trace('Server::stackoverflow(..) - params: ' + JSON.stringify(req.params));

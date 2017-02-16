@@ -1,6 +1,7 @@
 "use strict";
 var restify = require("restify");
 var Util_1 = require("../Util");
+var RouteHandler_1 = require("./RouteHandler");
 var Server = (function () {
     function Server(port) {
         Util_1.default.info("Server::<init>( " + port + " )");
@@ -21,12 +22,13 @@ var Server = (function () {
             try {
                 Util_1.default.info('Server::start() - start');
                 that.rest = restify.createServer({
-                    name: 'insightUBC'
+                    name: 'codestory'
                 });
                 that.rest.get('/', function (req, res, next) {
                     res.send(200);
                     return next();
                 });
+                that.rest.post('/', restify.bodyParser(), RouteHandler_1.default.postSnippet);
                 that.rest.get('/so/123', Server.stackoverflow);
                 that.rest.listen(that.port, function () {
                     Util_1.default.info('Server::start() - restify listening: ' + that.rest.url);
