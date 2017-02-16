@@ -7,7 +7,7 @@ import restify = require('restify');
 
 import Log from "../Util";
 import RouteHandler from "./RouteHandler";
-//import {InsightResponse} from "../controller/IInsightFacade";
+import * as redis from 'redis';
 
 /**
  * This configures the REST endpoints for the server.
@@ -16,10 +16,12 @@ export default class Server {
 
     private port: number;
     private rest: restify.Server;
+    public redisClient: redis.RedisClient
 
     constructor(port: number) {
         Log.info("Server::<init>( " + port + " )");
         this.port = port;
+        this.redisClient = redis.createClient();
     }
 
     /**
@@ -74,8 +76,10 @@ export default class Server {
 
 
                 that.rest.listen(that.port, function () {
+                  that.redisClient.on('connect', () => {
                     Log.info('Server::start() - restify listening: ' + that.rest.url);
                     fulfill(true);
+                  });
                 });
 
                 that.rest.on('error', function (err: string) {

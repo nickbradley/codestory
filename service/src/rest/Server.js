@@ -2,10 +2,12 @@
 var restify = require("restify");
 var Util_1 = require("../Util");
 var RouteHandler_1 = require("./RouteHandler");
+var redis = require("redis");
 var Server = (function () {
     function Server(port) {
         Util_1.default.info("Server::<init>( " + port + " )");
         this.port = port;
+        this.redisClient = redis.createClient();
     }
     Server.prototype.stop = function () {
         Util_1.default.info('Server::close()');
@@ -31,8 +33,10 @@ var Server = (function () {
                 that.rest.post('/', restify.bodyParser(), RouteHandler_1.default.postSnippet);
                 that.rest.get('/so/123', Server.stackoverflow);
                 that.rest.listen(that.port, function () {
-                    Util_1.default.info('Server::start() - restify listening: ' + that.rest.url);
-                    fulfill(true);
+                    that.redisClient.on('connect', function () {
+                        Util_1.default.info('Server::start() - restify listening: ' + that.rest.url);
+                        fulfill(true);
+                    });
                 });
                 that.rest.on('error', function (err) {
                     Util_1.default.info('Server::start() - restify ERROR: ' + err);

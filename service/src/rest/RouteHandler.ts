@@ -12,6 +12,7 @@ export default class RouteHandler {
       Log.trace('Server::storeSnippet(...) - params: ' + JSON.stringify(req.params));
       try {
         // snippet.origin == stackoverflow
+        // req.param.hash ->
         let snippet = req.body;
         let result = {code: 200, body: "all good"};
         Log.trace('Server::storeSnippet(...) - responding ' + result.code);
