@@ -13,7 +13,7 @@ var RouteHandler = (function () {
         }
         catch (err) {
             Util_1.default.error('Server::storeSnippet(...) - responding 400');
-            res.json(400, { error: err.message });
+            res.json(400, { error: err.messag });
         }
         return next();
     };
