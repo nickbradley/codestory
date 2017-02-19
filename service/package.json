@@ -1,7 +1,7 @@
 {
-  "name": "codestorey-server",
-  "description": "Backend services for CodeStorey",
-  "homepage": "https://github.com/nickbradley/codestorey",
+  "name": "codestory-server",
+  "description": "Backend services for CodeStory",
+  "homepage": "https://github.com/nickbradley/codestory",
   "author": "Nick Bradley",
   "contributors": "N/A",
   "license": "GPL-3.0",
@@ -10,19 +10,14 @@
   "keywords": [],
   "version": "0.0.1",
   "devDependencies": {
-    "bunyan": "^1.8.5",
-    "icedfrisby": "^0.3.X",
-    "joi": "^10.0.X",
-    "mocha": "^3.2.0",
-    "tslint": "^4.1.X"
   },
   "scripts": {
     "configure": "yarn install",
     "build": "tsc",
     "test": "mocha -c",
     "cover": "nyc -r --reporter=lcov yarn run test",
-    "deploy": "docker create --name codestorey-redis --publish 6389:6379 redis",
-    "start": "docker start codestorey-redis && node src/App.js"
+    "deploy": "yarn install && tsc && docker create --name codestory-redis --publish 6389:6379 redis",
+    "start": "docker start codestory-redis && node src/App.js"
   },
   "dependencies": {
     "@types/chai": "^3.4.34",
