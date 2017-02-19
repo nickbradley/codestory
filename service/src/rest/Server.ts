@@ -54,6 +54,14 @@ export default class Server {
                   name: "codestory"
               });
 
+              // support CORS
+              this.rest.use(
+                function crossOrigin(req: restify.Request, res: restify.Response, next: restify.Next){
+                  res.header("Access-Control-Allow-Origin", "*");
+                  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+                  return next();
+              });
+
 
               this.rest.get("/:id", RouteHandler.getSnippet);
 
