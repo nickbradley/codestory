@@ -12,7 +12,7 @@ export default class RouteHandler {
       Log.trace("Server::getSnippet(..) - id: " + JSON.stringify(req.params.id));
       try {
         let key: string = req.params.id;
-        let redis: Redis = new RedisManager();
+        let redis: RedisManager = new RedisManager();
 
         await redis.client.connect();
         let body = await redis.client.get(key);

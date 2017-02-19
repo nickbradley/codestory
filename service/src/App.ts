@@ -4,7 +4,7 @@
 import Server from "./rest/Server";
 import Log from "./Util";
 
-import Redis from "./controller/Redis";
+import RedisManager from "./controller/RedisManager";
 
 /**
  * Starts the server; doesn"t listen to whether the start was successful.
@@ -43,7 +43,7 @@ export default class App {
     public async disconectRedisClient() {
       Log.info("App::disconnectRedisClient() - disconnecting");
       try {
-        let r = new Redis();
+        let r = new RedisManager();
         let status = await r.client.disconnect();
         Log.info("App::disconnectRedisClient() - disconnected: " + status);
       }

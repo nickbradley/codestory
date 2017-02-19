@@ -37,7 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 var _this = this;
 var Server_1 = require("./rest/Server");
 var Util_1 = require("./Util");
-var Redis_1 = require("./controller/Redis");
+var RedisManager_1 = require("./controller/RedisManager");
 var App = (function () {
     function App() {
     }
@@ -100,7 +100,7 @@ var App = (function () {
                         _a.label = 1;
                     case 1:
                         _a.trys.push([1, 3, , 4]);
-                        r = new Redis_1.default();
+                        r = new RedisManager_1.default();
                         return [4 /*yield*/, r.client.disconnect()];
                     case 2:
                         status_3 = _a.sent();
