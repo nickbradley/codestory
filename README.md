@@ -13,7 +13,7 @@ cp -r ./atom/codestory ~/github/
 After restarting/reloading Atom, you should see the menu entry `Packages > Code Story`.
 
 ## Backend
-To deploy the backend service:
+To deploy the backend service, from the `service` directory, run:
 ```
 yarn deploy
 ```
