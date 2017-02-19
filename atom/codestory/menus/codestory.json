@@ -1,0 +1,26 @@
+{
+  "context-menu": {
+    "atom-text-editor": [
+      {
+        "label": "Paste with link",
+        "command": "codestory:paste-with-link"
+      }
+    ]
+  },
+  "menu": [
+    {
+      "label": "Packages",
+      "submenu": [
+        {
+          "label": "Code Story",
+          "submenu": [
+            {
+              "label": "Paste with link",
+              "command": "codestory:paste-with-link"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
