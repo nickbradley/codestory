@@ -21,7 +21,8 @@ export default class RouteHandler {
         res.json(200, body);
       } catch (err) {
           Log.error("Server::getSnippet(..) - responding 400");
-          res.json(400, {error: err.message});
+          console.log("ERROR ", err);
+          res.json(400, {error: err});
       }
       return next();
   }
@@ -41,7 +42,8 @@ export default class RouteHandler {
         res.json(201, "");
       } catch(err) {
         Log.error("Server::postSnippet(...) - responding 400");
-        res.json(400, {error: err.message});
+        console.log("ERROR ", err);
+        res.json(400, {error: err});
       }
       return next();
     }
