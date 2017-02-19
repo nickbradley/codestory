@@ -63,9 +63,9 @@ export default class Server {
               });
 
 
-              this.rest.get("/:id", RouteHandler.getSnippet);
+              this.rest.get("/codestory/:id", RouteHandler.getSnippet);
 
-              this.rest.post("/:id", restify.bodyParser(), RouteHandler.postSnippet);
+              this.rest.post("/codestory/:id", restify.bodyParser(), RouteHandler.postSnippet);
 
 
               this.rest.listen(this.port, () => {
