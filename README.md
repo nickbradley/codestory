@@ -2,7 +2,10 @@
 CPSC 507 Course Project
 
 ## Chrome Extension
-TODO: how to install?
+Go to chrome://extensions/
+Check the "Developer mode" checkbox
+Click on "Load unpacked extension"
+Select the "extchrome" folder in the codestory directory
 
 ## Atom Package
 To install the package copy it the github directory in your home directory:
