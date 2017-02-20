@@ -31,7 +31,10 @@ export default class RouteHandler {
 
   public static async postSnippet(req: restify.Request, res: restify.Response, next: restify.Next) {
       Log.trace("Server::postSnippet(...) - id: " + JSON.stringify(req.params.id));
+
+      console.log("typeof req.body", typeof req.body);
       console.log("req.body", req.body);
+
       console.log("req.body.hash", req.body.hash);
       console.log("req.body.story", req.body.story);
       try {
