@@ -53,6 +53,7 @@ export default class Server {
               this.rest = restify.createServer({
                   name: "codestory"
               });
+              this.rest.pre(restify.pre.sanitizePath());
 
               // support CORS
               this.rest.use(
