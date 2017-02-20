@@ -46,7 +46,7 @@ var CodeStory = (function() {
 		},
 		answerUrl: function(e) {
 			var fullUrl = null;
-			var baseUrl = 'http://stackoverflow.com/';
+			var baseUrl = 'http://stackoverflow.com';
 			var relativeUrl;
 			var $answer = $getAnswer(e);
 			if ($answer.length) {
