@@ -60,14 +60,14 @@ let app = new App();
 app.initServer(4321);
 
 
-process.on("SIGINT", async () => {
-  Log.info("App - terminating...");
-  try {
-    await app.stopServer();
-    await app.disconectRedisClient();
-    Log.info("App - Successfully terminated.");
-  }
-  catch (err) {
-    Log.error("App - Unable to terminate: " + err.messge);
-  }
-});
+// process.on("SIGINT", async () => {
+//   Log.info("App - terminating...");
+//   try {
+//     await app.stopServer();
+//     await app.disconectRedisClient();
+//     Log.info("App - Successfully terminated.");
+//   }
+//   catch (err) {
+//     Log.error("App - Unable to terminate: " + err.messge);
+//   }
+// });
