@@ -108,9 +108,19 @@ var CodeStory = (function() {
 		return collectedValues;
 	}
 
-	function send(hash, data) {
-		console.log("Sending: " + hash);
-		console.log(data);
+	function send(hash, storyData) {
+		console.log("CodeStory: " + hash);
+		$.ajax({
+			method: 'post',
+			url: 'http://nicholascbradley.com:4321/codestory',
+			data: JSON.stringify({ hash: hash, story: storyData }),
+			dataType: 'json',
+			contentType: 'application/json'
+		}).done(function(data) {
+			console.log("CodeStory POST success");
+		}).fail(function(data) {
+			console.log("CodeStory POST failure");
+		});
 	}
 
 	return {
