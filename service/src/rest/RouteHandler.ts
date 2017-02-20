@@ -20,7 +20,7 @@ export default class RouteHandler {
         Log.info("Server::getSnippet(..) - responding 200");
         res.json(200, body);
       } catch (err) {
-          Log.error("Server::getSnippet(..) - responding 200: empty body");
+          Log.error("Server::getSnippet(..) - responding 200 OK (Soft 404)");
           Log.error("error is" + err);
           console.log("ERROR ", err);
           res.json(200, {});
@@ -31,23 +31,21 @@ export default class RouteHandler {
 
   public static async postSnippet(req: restify.Request, res: restify.Response, next: restify.Next) {
       Log.trace("Server::postSnippet(...) - id: " + JSON.stringify(req.params.id));
-      console.log("req.params", req.params);
-      console.log("req.body", req.body);
+      console.log("req.body.hash", req.body.hash);
+      console.log("req.body.story", req.body.story);
       try {
-        let key: string = req.params.id;
-        let snippet = req.body;
+        let key: string = req.body.hash;
+        let snippet = req.body.story;
         let redis: RedisManager = new RedisManager();
 
         await redis.client.connect();
         await redis.client.set(key, snippet);
 
-        Log.trace("Server::postSnippet(...) - responding 201");
+        Log.trace("Server::postSnippet(...) - responding 201 empty body");
         res.json(201, "");
       } catch(err) {
-        Log.error("Server::postSnippet(...) - responding 400");
-        Log.error("error is" + err);
-        console.log("ERROR ", err);
-        res.json(500, {error: err});
+        Log.error("Server::postSnippet(...) - responding 500 ERROR: " + err.message);
+        res.json(500, {error: err.message});
       }
       return next();
     }
