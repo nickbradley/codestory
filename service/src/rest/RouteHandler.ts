@@ -30,17 +30,13 @@ export default class RouteHandler {
 
 
   public static async postSnippet(req: restify.Request, res: restify.Response, next: restify.Next) {
-      Log.trace("Server::postSnippet(...) - id: " + JSON.stringify(req.params.id));
+      Log.trace("Server::postSnippet(...) - id: " + JSON.stringify(req.params.hash));
 
-      console.log("typeof req.body", typeof req.body);
-      console.log("typeof req.params", typeof req.params);
-      console.log("req.body", req.body);
-
-      console.log("req.body.hash", req.body.hash);
-      console.log("req.body.story", req.body.story);
+      console.log("req.params.hash", req.params.hash);
+      console.log("req.params.story", req.params.story);
       try {
-        let key: string = req.body.hash;
-        let snippet = req.body.story;
+        let key: string = req.params.hash;
+        let snippet = req.params.story;
         let redis: RedisManager = new RedisManager();
 
         await redis.client.connect();
