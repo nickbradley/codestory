@@ -40,7 +40,7 @@ export default {
   pasteWithLink() {
     if (editor = atom.workspace.getActiveTextEditor()) {
       cb = atom.clipboard.read()
-      hashPos = cb.lastIndexOf('codestory:')
+      hashPos = cb.lastIndexOf('CodeStory:')
       if (hashPos > 1) {
         commentChars = atom.config.get('editor.commentStart', {scope: editor.getRootScopeDescriptor()})
         hash = cb.substring(hashPos+10).trim()

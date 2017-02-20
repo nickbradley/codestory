@@ -7,7 +7,7 @@ TODO: how to install?
 ## Atom Package
 To install the package copy it the github directory in your home directory:
 ```
-cp -r ./atom/codestory ~/github/
+cp -r ./extatom/codestory ~/.atom/packages/
 ```
 
 After restarting/reloading Atom, you should see the menu entry `Packages > Code Story`.
