@@ -45,7 +45,7 @@ export default {
         commentChars = atom.config.get('editor.commentStart', {scope: editor.getRootScopeDescriptor()})
         hash = cb.substring(hashPos+10).trim()
         cb = cb.substring(0, hashPos)
-        cb = commentChars + ' View code story: http://nicholascbradley.com:4321/' + hash + '\n' + cb
+        cb = commentChars + ' View code story: http://nicholascbradley.com:4321/codestory/' + hash + '\n' + cb
       }
       editor.insertText(cb)
     }
