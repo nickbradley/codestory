@@ -58,8 +58,8 @@ export default class Server {
               this.rest.use(
                 function crossOrigin(req: restify.Request, res: restify.Response, next: restify.Next){
                   res.header("Access-Control-Allow-Origin", "*");
-                  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-                  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+                  res.header("Access-Control-Allow-Headers", "*");
+                  res.header("Access-Control-Allow-Methods", "*");
                   return next();
               });
 
