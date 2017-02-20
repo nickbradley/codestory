@@ -33,6 +33,7 @@ export default class RouteHandler {
       Log.trace("Server::postSnippet(...) - id: " + JSON.stringify(req.params.hash));
       console.log("req.params", req.params);
       console.log("typeof req.params", typeof req.params);
+      console.log('req.params keys', Object.keys(req.params));
       console.log("req.params.hash", req.params.hash);
       console.log("req.params.story", req.params.story);
       try {
