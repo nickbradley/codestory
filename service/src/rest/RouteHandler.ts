@@ -28,6 +28,12 @@ export default class RouteHandler {
       return next();
   }
 
+  public static async getStatic(req: restify.Request, res: restify.Response, next: restify.Next) {
+    Log.trace("Server::getStatic(...) - id: " + JSON.stringify(req.params.path));
+    res.send(200, 'OK');
+    return next();
+  }
+
 
   public static async postSnippet(req: restify.Request, res: restify.Response, next: restify.Next) {
       Log.trace("Server::postSnippet(...) - id: " + JSON.stringify(req.params.hash));

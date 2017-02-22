@@ -64,11 +64,29 @@ export default class Server {
                   return next();
               });
 
+              // rest api endpoints
+              this.rest.get("/codestory/rest/:id", RouteHandler.getSnippet);
 
-              this.rest.get("/codestory/:id", RouteHandler.getSnippet);
+              this.rest.post("/codestory/rest", restify.bodyParser({mapParams: true}), RouteHandler.postSnippet);
 
-              this.rest.post("/codestory", restify.bodyParser({mapParams: true}), RouteHandler.postSnippet);
 
+              // Handle URLs: /codestory/<FILENAME>
+              this.rest.get("/codestory/.+\.[html|css|js]$", restify.serveStatic({
+                directory: __dirname + "/public/",
+                default: "index.html"
+              }));
+
+              // Handle URLs: /codestory/<HASH>
+              this.rest.get("/codestory/[a-zA-Z0-9]+$", restify.serveStatic({
+                directory: __dirname + "/public/codestory/",
+                file: "index.html"
+              }));
+
+              // Catch-all
+              this.rest.get("/\/.*\//", restify.serveStatic({
+                directory: __dirname + "/public/",
+                file: "index.html"
+              }));
 
               this.rest.listen(this.port, () => {
                 Log.info("Server::start() - restify listening: " + this.rest.url);
