@@ -2,7 +2,7 @@ var CodeStory = (function() {
 
 	var pageAccessTime;
 
-	var REST_URL = 'http://nicholascbradley.com:4321/codestory';
+	var REST_URL = 'http://nicholascbradley.com:4321/codestory/rest';
 
 	var $getAnswer = function(e) {
 		var $postText = $(e.target).closest('.post-text');
