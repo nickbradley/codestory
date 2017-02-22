@@ -7,6 +7,10 @@ var CodeStory = (function() {
 		return $postText.closest('.answer');
 	};
 
+	var $getQuestion = function(e) {
+		return $('#question .post-text');
+	};
+
 	var collectors = {
 		origin: function(e) {
 			return "stackoverflow";
@@ -42,7 +46,10 @@ var CodeStory = (function() {
 			return window.location.href;
 		},
 		questionContent: function(e) {
-			return $('#question .post-text').text();
+			return $getQuestion(e).text() || null;
+		},
+		questionContentWithHtml: function(e) {
+			return $getQuestion(e).html() || null;
 		},
 		answerUrl: function(e) {
 			var fullUrl = null;
@@ -69,12 +76,10 @@ var CodeStory = (function() {
 			return snippet;
 		},
 		answerContent: function(e) {
-			var content = null;
-			var $answer = $getAnswer(e);
-			if ($answer.length) {
-				content = $answer.find('.post-text').text();
-			}
-			return content;
+			return $getAnswer(e).find('.post-text').text() || null;
+		},
+		answerContentWithHtml: function(e) {
+			return $getAnswer(e).find('.post-text').html() || null;
 		},
 		votes: function(e) {
 			var votes = null;
@@ -110,17 +115,18 @@ var CodeStory = (function() {
 
 	function send(hash, storyData) {
 		console.log("CodeStory: " + hash);
-		$.ajax({
-			method: 'post',
-			url: 'http://nicholascbradley.com:4321/codestory',
-			data: JSON.stringify({ hash: hash, story: storyData }),
-			dataType: 'json',
-			contentType: 'application/json'
-		}).done(function(data) {
-			console.log("CodeStory POST success");
-		}).fail(function(data) {
-			console.log("CodeStory POST failure");
-		});
+		console.log(storyData);
+		// $.ajax({
+		// 	method: 'post',
+		// 	url: 'http://nicholascbradley.com:4321/codestory',
+		// 	data: JSON.stringify({ hash: hash, story: storyData }),
+		// 	dataType: 'json',
+		// 	contentType: 'application/json'
+		// }).done(function(data) {
+		// 	console.log("CodeStory POST success");
+		// }).fail(function(data) {
+		// 	console.log("CodeStory POST failure");
+		// });
 	}
 
 	return {
