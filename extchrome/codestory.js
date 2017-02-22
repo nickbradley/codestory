@@ -2,6 +2,8 @@ var CodeStory = (function() {
 
 	var pageAccessTime;
 
+	var REST_URL = 'http://nicholascbradley.com:4321/codestory';
+
 	var $getAnswer = function(e) {
 		var $postText = $(e.target).closest('.post-text');
 		return $postText.closest('.answer');
@@ -116,17 +118,17 @@ var CodeStory = (function() {
 	function send(hash, storyData) {
 		console.log("CodeStory: " + hash);
 		console.log(storyData);
-		// $.ajax({
-		// 	method: 'post',
-		// 	url: 'http://nicholascbradley.com:4321/codestory',
-		// 	data: JSON.stringify({ hash: hash, story: storyData }),
-		// 	dataType: 'json',
-		// 	contentType: 'application/json'
-		// }).done(function(data) {
-		// 	console.log("CodeStory POST success");
-		// }).fail(function(data) {
-		// 	console.log("CodeStory POST failure");
-		// });
+		$.ajax({
+			method: 'post',
+			url: REST_URL,
+			data: JSON.stringify({ hash: hash, story: storyData }),
+			dataType: 'json',
+			contentType: 'application/json'
+		}).done(function(data) {
+			console.log("CodeStory POST success");
+		}).fail(function(data) {
+			console.log("CodeStory POST failure");
+		});
 	}
 
 	return {

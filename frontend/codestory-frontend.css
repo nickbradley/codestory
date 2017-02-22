@@ -1,0 +1,30 @@
+#wrapper {
+	width: 1200px;
+	margin: 0 auto;
+	padding-bottom: 100px;
+}
+
+h1 {
+	text-align: center;
+}
+
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+td {
+	border: 1px solid #ccc;
+	padding: 7px;
+}
+
+td:first-child {
+	width: 200px;
+	background: lightgoldenrodyellow;
+	text-align: right;
+	font-weight: bold;
+}
+
+td:nth-child(2) {
+
+}

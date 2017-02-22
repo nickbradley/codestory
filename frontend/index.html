@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <title>CodeStory</title>
+        <link rel="stylesheet" href="codestory-frontend.css"></link>
+    </head>
+    <body>
+        <script src="jquery.js"></script>
+        <script src="handlebars.js"></script>
+
+        <script id="codestory-template" type="text/x-handlebars-template">
+            <div id="wrapper">
+                <h1>CodeStory Overview</h1>
+
+                <table>
+                    <tr><td>Origin</td><td>{{origin}}</td></tr>
+                    <tr><td>Copied from</td><td>{{#if extra.copiedFromAnswer}}Answer{{else}}Question{{/if}}</td></tr>
+                    <tr><td>Access time</td><td>{{accessTime}}</td></tr>
+                    <tr><td>Original selection</td><td><pre>{{originalSelection}}</pre></td></tr>
+                    <tr><td>Question URL</td><td><a href="{{questionUrl}}">{{questionUrl}}</a></td></tr>
+                    <tr><td>Question content</td><td>{{{questionContentWithHtml}}}</td></tr>
+                    {{#if extra.copiedFromAnswer}}
+                        <tr><td>Answer URL</td><td><a href="{{answerUrl}}">{{answerUrl}}</a></td></tr>
+                        <tr><td>Answer content</td><td>{{{answerContent}}}</td></tr>
+                        <tr><td>Accepted</td><td>{{accepted}}</td></tr>
+                        <tr><td>Answer Votes</td><td>{{votes}}</td></tr>
+                    {{else}}
+                        <tr><td>Question Votes</td><td>{{votes}}</td></tr>
+                    {{/if}}
+                </table>
+            </div>
+
+        </script>
+
+        <script src="codestory-frontend.js"></script>
+
+    </body>
+</html>
