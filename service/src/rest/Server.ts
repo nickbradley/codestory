@@ -72,19 +72,19 @@ export default class Server {
 
               // Handle URLs: /codestory/<FILENAME>
               this.rest.get("/codestory/.+\.[html|css|js]$", restify.serveStatic({
-                directory: __dirname + "/public/",
+                directory: __dirname + "/frontend/",
                 default: "index.html"
               }));
 
               // Handle URLs: /codestory/<HASH>
               this.rest.get("/codestory/[a-zA-Z0-9]+$", restify.serveStatic({
-                directory: __dirname + "/public/codestory/",
+                directory: __dirname + "/frontend/codestory/",
                 file: "index.html"
               }));
 
               // Catch-all
               this.rest.get("/\/.*\//", restify.serveStatic({
-                directory: __dirname + "/public/",
+                directory: __dirname + "/frontend/",
                 file: "index.html"
               }));
 
