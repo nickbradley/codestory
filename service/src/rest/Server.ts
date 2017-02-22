@@ -49,7 +49,7 @@ export default class Server {
       return new Promise((fulfill, reject) => {
           try {
               Log.info("Server::start() - start");
-
+              console.log("__direname:", __dirname);
               this.rest = restify.createServer({
                   name: "codestory"
               });
@@ -77,8 +77,8 @@ export default class Server {
               }));
 
               // Handle URLs: /codestory/<HASH>
-              this.rest.get("/codestory/[a-zA-Z0-9]+$", restify.serveStatic({
-                directory: __dirname + "/frontend/",
+              this.rest.get("/codestory/[a-zA-Z0-9]+", restify.serveStatic({
+                directory: __dirname + "/frontend/codestory/",
                 file: "index.html"
               }));
 

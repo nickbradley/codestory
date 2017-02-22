@@ -1,5 +1,5 @@
 (function() {
-	var REST_URL = 'http://nicholascbradley.com:4321/codestory/';
+	var REST_URL = 'http://nicholascbradley.com:4321/codestory/rest/';
 
 	var source = $("#codestory-template").html();
 	var template = Handlebars.compile(source);
