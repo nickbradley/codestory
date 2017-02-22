@@ -78,7 +78,7 @@ export default class Server {
 
               // Handle URLs: /codestory/<HASH>
               this.rest.get("/codestory/[a-zA-Z0-9]+$", restify.serveStatic({
-                directory: __dirname + "/frontend/codestory/",
+                directory: __dirname + "/frontend/",
                 file: "index.html"
               }));
 
