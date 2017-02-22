@@ -25,9 +25,15 @@
 		$(document.body).append(html);
 	}
 
+	var hrefSplit = window.location.href.split("/");
+	var hash;
+	if (hrefSplit.length > 1) {
+		hash = hrefSplit.pop();
+	}
+
 	$.ajax({
 		method: 'get',
-		url: REST_URL+'f1eeb378d',
+		url: REST_URL+hash,
 		dataType: 'json',
 		contentType: 'application/json'
 	}).done(function(data) {
