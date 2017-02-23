@@ -13,6 +13,18 @@ var CodeStory = (function() {
 		return $('#question .post-text');
 	};
 
+	var getVotes = function($container) {
+		var votes = null;
+		if ($container.length) {
+			try {
+				votes = parseInt($container.find('.vote-count-post').text(), 10);
+			} catch (e) {
+				// leave null
+			}
+		}
+		return votes;
+	};
+
 	var collectors = {
 		origin: function(e) {
 			return "stackoverflow";
@@ -43,6 +55,9 @@ var CodeStory = (function() {
 		},
 		originalSelection: function(e) {
 			return window.getSelection().toString();
+		},
+		questionTitle: function(e) {
+			return $('#question-header a').text();
 		},
 		questionUrl: function(e) {
 			return window.location.href;
@@ -83,17 +98,11 @@ var CodeStory = (function() {
 		answerContentWithHtml: function(e) {
 			return $getAnswer(e).find('.post-text').html() || null;
 		},
-		votes: function(e) {
-			var votes = null;
-			var $container = $(e.target).closest('.question, .answer');
-			if ($container.length) {
-				try {
-					votes = parseInt($container.find('.vote-count-post').text(), 10);
-				} catch (e) {
-					// leave null
-				}
-			}
-			return votes;
+		answerVotes: function(e) {
+			return getVotes($getAnswer(e));
+		},
+		questionVotes: function(e) {
+			return getVotes($('#question'));
 		},
 		accepted: function(e) {
 			var accepted = null;

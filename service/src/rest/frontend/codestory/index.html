@@ -4,27 +4,49 @@
         <link rel="stylesheet" href="codestory-frontend.css"></link>
     </head>
     <body>
+        <script src="moment.js"></script>
         <script src="jquery.js"></script>
         <script src="handlebars.js"></script>
 
         <script id="codestory-template" type="text/x-handlebars-template">
             <div id="wrapper">
-                <h1>CodeStory Overview</h1>
+                <div id="story-container">
+                    <h1>CodeStory</h1>
+                    <div>
+                        The developer was interested in the StackOverflow question <a target="_blank" href="{{questionUrl}}">{{questionTitle}}</a>
+                        ({{questionVotes}} votes) on {{accessTime}}.
+
+                        They copied the text below from the
+                        {{#if extra.copiedFromAnswer}}
+                        {{#if accepted}}accepted{{/if}} <a target="_blank" href="{{answerUrl}}">answer</a> which received {{answerVotes}} votes.
+                        {{else}}
+                        question body.
+                        {{/if}}
+                    </div>
+                </div>
+
+
+
 
                 <table>
-                    <tr><td>Origin</td><td>{{origin}}</td></tr>
-                    <tr><td>Copied from</td><td>{{#if extra.copiedFromAnswer}}Answer{{else}}Question{{/if}}</td></tr>
-                    <tr><td>Access time</td><td>{{accessTime}}</td></tr>
+                    <!--<tr>-->
+                        <!--<td>Story</td>-->
+                        <!--<td>-->
+                            <!--The developer was interested in the StackOverflow question <a target="_blank" href="{{questionUrl}}">{{questionTitle}}</a>-->
+                            <!--({{questionVotes}} votes) on {{accessTime}}.-->
+
+                            <!--They copied the text below from the-->
+                            <!--{{#if extra.copiedFromAnswer}}-->
+                                <!--{{#if accepted}}accepted{{/if}} <a target="_blank" href="{{answerUrl}}">answer</a> which received {{answerVotes}} votes.-->
+                            <!--{{else}}-->
+                                <!--question body.-->
+                            <!--{{/if}}-->
+                        <!--</td>-->
+                    <!--</tr>-->
+                    <tr><td>Question content</td><td>{{{questionContent}}}</td></tr>
                     <tr><td>Original selection</td><td><pre>{{originalSelection}}</pre></td></tr>
-                    <tr><td>Question URL</td><td><a href="{{questionUrl}}">{{questionUrl}}</a></td></tr>
-                    <tr><td>Question content</td><td>{{{questionContentWithHtml}}}</td></tr>
                     {{#if extra.copiedFromAnswer}}
-                        <tr><td>Answer URL</td><td><a href="{{answerUrl}}">{{answerUrl}}</a></td></tr>
                         <tr><td>Answer content</td><td>{{{answerContent}}}</td></tr>
-                        <tr><td>Answer accepted?</td><td>{{accepted}}</td></tr>
-                        <tr><td>Answer votes</td><td>{{votes}}</td></tr>
-                    {{else}}
-                        <tr><td>Question votes</td><td>{{votes}}</td></tr>
                     {{/if}}
                 </table>
             </div>
