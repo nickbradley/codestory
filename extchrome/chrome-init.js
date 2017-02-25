@@ -1,5 +1,7 @@
 (function() {
 
+	var host = window.location.host;
+
 	function onCopy(copyEvent) {
 		var storyData = CodeStory.fromStackoverflow(copyEvent);
 		var hash = md5(new Date().getTime() + storyData.originalSelection);
@@ -11,6 +13,10 @@
 		CodeStory.send(hash, storyData);
 	}
 
-	$(document).on('copy', '.post-text', onCopy);
+	if (host.indexOf('github') >= 0) {
+		$(document).ready(CodeStory.addLinksToGithub);
+	} else {
+		$(document).on('copy', '.post-text', onCopy);
+	}
 
 }());
