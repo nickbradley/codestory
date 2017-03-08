@@ -4,6 +4,9 @@ var CodeStory = (function() {
 
 	var REST_URL = 'http://nicholascbradley.com:4321/codestory/rest';
 
+	var GITHUB_SEARCHURL = 'http://nicholascbradley.com:4321/codestory';
+	var GITHUB_REGEX = /http:\/\/nicholascbradley.com:4321\/codestory\/[^\s\t\r]*/g;
+
 	var $getAnswer = function(e) {
 		var $postText = $(e.target).closest('.post-text');
 		return $postText.closest('.answer');
@@ -115,6 +118,15 @@ var CodeStory = (function() {
 
 	};
 
+	function addLinksToGithub() {
+		$('.pl-c:contains('+GITHUB_SEARCHURL+')').html(function(index, oldHtml) {
+			return oldHtml.replace(GITHUB_REGEX, function(fullMatch) {
+				var $a = $('<a></a>').attr({href: fullMatch, target: '_blank'}).html(fullMatch);
+				return $a.prop('outerHTML');
+			});
+		});
+	}
+
 	function fromStackoverflow(copyEvent) {
 		var collectedValues = {};
 		pageAccessTime = new Date().getTime();
@@ -142,7 +154,8 @@ var CodeStory = (function() {
 
 	return {
 		fromStackoverflow: fromStackoverflow,
-		send: send
+		send: send,
+		addLinksToGithub: addLinksToGithub
 	};
 
 }());
