@@ -49,7 +49,6 @@ export default class Server {
       return new Promise((fulfill, reject) => {
           try {
               Log.info("Server::start() - start");
-              console.log("__direname:", __dirname);
               this.rest = restify.createServer({
                   name: "codestory"
               });
@@ -69,7 +68,6 @@ export default class Server {
 
               this.rest.post("/codestory/rest", restify.bodyParser({mapParams: true}), RouteHandler.postSnippet);
 
-
               // Handle URLs: /codestory/<FILENAME>
               this.rest.get("/codestory/.+\.[html|css|js]$", restify.serveStatic({
                 directory: __dirname + "/frontend/",
@@ -82,11 +80,17 @@ export default class Server {
                 file: "index.html"
               }));
 
-              // Catch-all
+              // catch-all
               this.rest.get("/\/.*\//", restify.serveStatic({
-                directory: __dirname + "/frontend/",
-                file: "index.html"
+                  directory: __dirname + "/frontend/",
+                  file: "index.html"
               }));
+
+              this.rest.get("/", restify.serveStatic({
+                  directory: __dirname + "/frontend/",
+                  file: "index.html"
+              }));
+
 
               this.rest.listen(this.port, () => {
                 Log.info("Server::start() - restify listening: " + this.rest.url);
@@ -96,6 +100,13 @@ export default class Server {
               this.rest.on("error", (err: string) => {
                 Log.info("Server::start() - restify ERROR: " + err);
                 reject(err);
+              });
+
+              this.rest.on('after', (req: restify.Request, res: restify.Response, route: restify.Route, err: Error) => {
+                if (err) {
+                  Log.error("Sever - ROUTE ERROR " + err.message);
+                }
+                Log.trace("Server - ROUTE " + route.spec.method + " " + res.statusCode + " " + req.url + " => " + route.spec.path);
               });
 
           } catch (err) {
