@@ -31,7 +31,7 @@
 
 	var href = window.location.href;
 	var hash, hrefSplit;
-	if (href.indexOf('dev=true')) {
+	if (href.indexOf('dev=true')+1) {
 		hash = TEST_HASH;
 	} else {
 		hrefSplit = window.location.href.split("/");
