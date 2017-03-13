@@ -1,16 +1,8 @@
-
-Task:
- 1. Clone 8 repos of [codestory-study-bootstrap](https://github.com/ataraxie/codestory-study-bootstrap)
-    - Name each codestory-study-X
- 2. Create pull requests in each repo
-
-
 ## Details
 Dev1 branch -> Util.log w/o annotation (-a)
 Dev3 branch -> Util.log w/ annotation (+a)
 Dev2 branch -> Util.versionCompare w/o annotation (-b)
 Dev4 branch -> Util.versionCompare w/ annotation (+b)
-
 
 
 | Subject | PR1  | PR2  | GitHub ID             | Name             | Recruiter |
@@ -25,8 +17,12 @@ Dev4 branch -> Util.versionCompare w/ annotation (+b)
 |       8 | dev2 | dev3 |                       |                  | NB        |
 
 
-
 ## Reviewing the pull request
+<!-- if first pull request -->
+**Note**: this is the first review you should complete.
+<!-- if second pull request -->
+**Note**: After finishing this code review, please finish the study by completing our [survey]().
+
 @XXX Please review this pull request by looking at the **[diff view]()** and answering the questions below.
   1. What is the purpose of the method with the change?
   2. How did the method change?
@@ -37,7 +33,9 @@ Please answer in the comment field below (you do not need to merge).
 <!-- if annotated -->
 **Note**: this diff contains a link to our tool, CodeStory, that might be helpful. Copy the link in your browser to see the story.
 
+
 ## Debrief
+The survey can be found at https://goo.gl/forms/Zz8e9Sj50wPS7aPG2
  1. Please rank your experience reviewing the 1st pull request:
     - [ ] Very easy
     - [ ] Somewhat easy
@@ -50,7 +48,7 @@ Please answer in the comment field below (you do not need to merge).
     - [ ] Neutral
     - [ ] Somewhat challenging
     - [ ] Very challenging
- 3. Was the information provided by CodeStory useful?
+ 3. Was the information provided by CodeStory useful (leave blank if you didn't use CodeStory)?
    - [ ] Very useful
    - [ ] Somewhat useful
    - [ ] Maybe useful
