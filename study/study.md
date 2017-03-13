@@ -27,17 +27,15 @@ Dev4 branch -> Util.versionCompare w/ annotation (+b)
 
 
 ## Reviewing the pull request
-@XXX Please review this pull request by looking at the [diff view]() and answering the questions below.
+@XXX Please review this pull request by looking at the **[diff view]()** and answering the questions below.
   1. What is the purpose of the method with the change?
   2. How did the method change?
   3. Why was this change made?
+
 Please answer in the comment field below (you do not need to merge).
 
-
-
-#if annotated
-_Note: this diff contains a link to our tool, CodeStory, that might be helpful.
-Copy the link in your browser to see the story._
+<!-- if annotated -->
+**Note**: this diff contains a link to our tool, CodeStory, that might be helpful. Copy the link in your browser to see the story.
 
 ## Debrief
  1. Please rank your experience reviewing the 1st pull request:
