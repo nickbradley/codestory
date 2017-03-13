@@ -27,23 +27,31 @@ Dev4 branch -> Util.versionCompare w/ annotation (+b)
 
 
 ## Reviewing the pull request
-@XXX Please review this pull request by answering the questions below.
+@XXX Please review this pull request by looking at the [diff view]() and answering the questions below.
   1. What is the purpose of the method with the change?
   2. How did the method change?
   3. Why was this change made?
+Please answer in the comment field below (you do not need to merge).
+
+
 
 #if annotated
 _Note: this diff contains a link to our tool, CodeStory, that might be helpful.
 Copy the link in your browser to see the story._
 
 ## Debrief
- 1. Please rank your experience reviewing the **first** pull request (pick one):
+ 1. Please rank your experience reviewing the 1st pull request:
     - [ ] Very easy
     - [ ] Somewhat easy
     - [ ] Neutral
     - [ ] Somewhat challenging
     - [ ] Very challenging
- 2. <Same as in 1>
+ 2. Please rank your experience reviewing the 2nd pull request:
+    - [ ] Very easy
+    - [ ] Somewhat easy
+    - [ ] Neutral
+    - [ ] Somewhat challenging
+    - [ ] Very challenging
  3. Was the information provided by CodeStory useful?
    - [ ] Very useful
    - [ ] Somewhat useful
@@ -51,7 +59,7 @@ Copy the link in your browser to see the story._
    - [ ] Not very useful
    - [ ] Not useful
    - [ ] Did not use the link
- 4. Do you have any comments on CodeStory? Were you missing any information?
+ 4. Do you have any comments about CodeStory? Were you missing any information?
 Developers don’t tend to record their thoughts while writing code although this information could be valuable for program understanding. Our tool CodeStory interacts with StackOverflow and records copy paste information during development. Thank you for participating in this study!
 
 
