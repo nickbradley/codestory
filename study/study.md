@@ -11,15 +11,30 @@ Dev3 branch -> Util.log w/ annotation (+a)
 Dev2 branch -> Util.versionCompare w/o annotation (-b)
 Dev4 branch -> Util.versionCompare w/ annotation (+b)
 
+
+
+| Subject | PR1  | PR2  | GitHub ID             | Name             | Recruiter |
+| ------- | ---- | ---- | --------------------- | ---------------- | --------- |
+|       1 | dev3 | dev2 | coffee4tw             | Thorsten         | FG        |  
+|       2 | dev3 | dev2 |                       | Susanne          | NB        |
+|       3 | dev1 | dev4 | Thrashtilldess        | Andy             | FG        |
+|       4 | dev1 | dev4 |                       |                  | NB        |
+|       5 | dev4 | dev1 | harrishancock         | Harris           | FG        |
+|       6 | dev4 | dev1 |                       |                  | NB        |
+|       7 | dev2 | dev3 |                       |                  | FG        |
+|       8 | dev2 | dev3 |                       |                  | NB        |
+
+
+
 ## Reviewing the pull request
-@XXX Please review this pull request.
+@XXX Please review this pull request by answering the questions below.
   1. What is the purpose of the method with the change?
   2. How did the method change?
   3. Why was this change made?
 
 #if annotated
-_Note: this diff contains a codestory that might be helpful._
-
+_Note: this diff contains a link to our tool, CodeStory, that might be helpful.
+Copy the link in your browser to see the story._
 
 ## Debrief
  1. Please rank your experience reviewing the **first** pull request (pick one):
@@ -28,16 +43,16 @@ _Note: this diff contains a codestory that might be helpful._
     - [ ] Neutral
     - [ ] Somewhat challenging
     - [ ] Very challenging
- 2. What factors influenced your experience reviewing the **first** pull request
-    (choose all that apply):
-    - [ ] Amount of code in the patch
-    - [ ] Comments
-    - [ ] Examining code outside of the patch
-    - [ ] Patch description
-    - [ ] External resources/websites, please specify: ________________________.
-    - [ ] Other factors, please specify: __________________________________.
- 3. If you could change one thing about the **first** pull request, it would be
-    _________________________.
+ 2. <Same as in 1>
+ 3. Was the information provided by CodeStory useful?
+   - [ ] Very useful
+   - [ ] Somewhat useful
+   - [ ] Maybe useful
+   - [ ] Not very useful
+   - [ ] Not useful
+   - [ ] Did not use the link
+ 4. Do you have any comments on CodeStory? Were you missing any information?
+Developers don’t tend to record their thoughts while writing code although this information could be valuable for program understanding. Our tool CodeStory interacts with StackOverflow and records copy paste information during development. Thank you for participating in this study!
 
 
 
@@ -46,33 +61,9 @@ _Note: this diff contains a codestory that might be helpful._
 
 
 
-Two sets of questions:
- 1. Questions about the code/diff
-      - code flow
-      - new variables
-      - values changed
- 2. Debrief questions about the experience as a whole (namely, which diff was easier to evaluate)
-
-
-How did you feel reviewing the first pull request
- - very easy
-
- - very hard
-What made it easy or hard: _______
-If you could change any one thing about the code of the first PR, what would it be: _______
 
 
 
-How did you feel reviewing the second pull request
- - very easy
-
- - very hard
-
-What made it easy or hard: _______
-
-
-
-- What does it do (maybe: what does the entire class do?)
 
 
 
