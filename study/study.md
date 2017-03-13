@@ -8,7 +8,7 @@ Dev4 branch -> Util.versionCompare w/ annotation (+b)
 | Subject | PR1  | PR2  | GitHub ID             | Name             | Recruiter |
 | ------- | ---- | ---- | --------------------- | ---------------- | --------- |
 |       1 | dev3 | dev2 | coffee4tw             | Thorsten         | FG        |  
-|       2 | dev3 | dev2 |                       | Susanne          | NB        |
+|       2 | dev3 | dev2 | susannebradley        | Susanne          | NB        |
 |       3 | dev1 | dev4 | Thrashtilldess        | Andy             | FG        |
 |       4 | dev1 | dev4 |                       |                  | NB        |
 |       5 | dev4 | dev1 | harrishancock         | Harris           | FG        |
@@ -18,10 +18,12 @@ Dev4 branch -> Util.versionCompare w/ annotation (+b)
 
 
 ## Reviewing the pull request
+---
 <!-- if first pull request -->
-**Note**: this is the first review you should complete.
+### This is the <first|last> code review you should complete.
+
 <!-- if second pull request -->
-**Note**: After finishing this code review, please finish the study by completing our [survey]().
+**Note**: after finishing this code review, please finish the study by completing our **[survey](https://goo.gl/forms/Zz8e9Sj50wPS7aPG2)**.
 
 @XXX Please review this pull request by looking at the **[diff view]()** and answering the questions below.
   1. What is the purpose of the method with the change?
@@ -32,7 +34,7 @@ Please answer in the comment field below (you do not need to merge).
 
 <!-- if annotated -->
 **Note**: this diff contains a link to our tool, CodeStory, that might be helpful. Copy the link in your browser to see the story.
-
+---
 
 ## Debrief
 The survey can be found at https://goo.gl/forms/Zz8e9Sj50wPS7aPG2
