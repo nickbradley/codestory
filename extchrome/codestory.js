@@ -60,7 +60,7 @@ var CodeStory = (function() {
 			return window.getSelection().toString();
 		},
 		questionTitle: function(e) {
-			return $('#question-header a').text();
+			return $('#question-header h1 a').text();
 		},
 		questionUrl: function(e) {
 			return window.location.href;
