@@ -17,7 +17,7 @@
     "test": "mocha -c",
     "cover": "nyc -r --reporter=lcov yarn run test",
     "deploy": "yarn install && tsc && docker create --name codestory-redis --publish 6389:6379 redis",
-    "start": "docker start codestory-redis && node src/App.js"
+    "start": "docker start codestory-redis && forever --minUptime 1000 --spinSleepTime 1000 src/App.js 2>&1 | tee output.log"
   },
   "dependencies": {
     "@types/chai": "^3.4.34",
