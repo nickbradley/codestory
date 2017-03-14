@@ -10,11 +10,11 @@ Dev4 branch -> Util.versionCompare w/ annotation (+b)
 |       1 | dev3 | dev2 | coffee4tw             | Thorsten         | FG        |  
 |       2 | dev3 | dev2 | susannebradley        | Susanne          | NB        |
 |       3 | dev1 | dev4 | Thrashtilldess        | Andy             | FG        |
-|       4 | dev1 | dev4 |                       |                  | NB        |
+|       4 | dev1 | dev4 | vivianig              | Giovanni         | NB        |
 |       5 | dev4 | dev1 | harrishancock         | Harris           | FG        |
-|       6 | dev4 | dev1 |                       |                  | NB        |
-|       7 | dev2 | dev3 |                       |                  | FG        |
-|       8 | dev2 | dev3 |                       |                  | NB        |
+|       6 | dev4 | dev1 | marquesarthur         | Arthur           | NB        |
+|       7 | dev2 | dev3 | wehnsdaefflae         |                  | FG        |
+|       8 | dev2 | dev3 | digorithm             | Rodrigo          | NB        |
 
 
 ## Reviewing the pull request
