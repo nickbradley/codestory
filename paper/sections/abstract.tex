@@ -2,6 +2,20 @@
 
 \begin{document}
 
-abstract.tex
+Program comprehension impacts code quality, velocity and efficiency. However, it
+is a difficult task when only using code; many of the design and implementation
+decisions are lost when transferring the information into code. Unfortunately,
+capturing this information can be challenging, especially when it requires
+significant changes in developer workflow. Further, if the information is captured
+it must be linked to the section of code that it impacts and made available to
+reviewers in a way that enhances comprenshion without being obtrusive.
+
+In this paper we describe a simple method for caputring developer reasoning
+during coding tasks. Our implementation, called CodeStory, integrates transparently
+into a developer's workflow by hooking into the standard copy-paste operation. In
+this iteration, when developers copy text or code snippets from StackOverflow,
+CodeStory will scrape the page capturing additional context and including it with
+the pasted content in their code. This information will later be seen by other
+developers giving them a better understanding of the author's reasoning.
 
 \end{document}
