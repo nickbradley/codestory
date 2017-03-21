@@ -1,9 +1,18 @@
 \documentclass{sig-alternate}
 
-
 \usepackage{subfiles}
+% \usepackage{biblatex}
+
+% \newcommand{\dobib}{ % Define the command
+%     \bibliographystyle{acm}
+%     \bibliography{../} % Place the path relative to the subfile here
+% }
+
+
 
 \begin{document}
+% \renewcommand{\dobib}{} % Un-define the command
+
 
 \title{Code Story: Information Tracking for Program Comprehension}
 
@@ -17,7 +26,6 @@ Felix Grund and Nick Bradley \\
        \email{ataraxie,nbrad11@cs.ubc.ca}
 }
 \maketitle
-
 
 \begin{abstract}
   \subfile{sections/abstract}
@@ -49,4 +57,6 @@ Felix Grund and Nick Bradley \\
 \section{Conclusion}
   \subfile{sections/conclusion}
 \section{References}
+  \bibliography{manifest}
+  \bibliographystyle{ieeetr}
 \end{document}
