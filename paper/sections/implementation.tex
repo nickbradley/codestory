@@ -2,10 +2,15 @@
 
 \begin{document}
 
-The implementation of CodeStory consists of three parts that interact with each other. There is (1) a Chrome extension responsible for collecting meta-information from StackOverflow when snippets are copied, (2) a backend receiving these information and persisting them in a database and (3) an Atom package that extends pasted snippets with a link to a page showing these meta information. This section provides a brief description of each part.
+The implementation of CodeStory consists of three parts that interact with each
+other. There is (1) a Chrome extension responsible for collecting contextual
+information from StackOverflow when snippets are copied, (2) a backend receiving
+this information and persisting it in a database and (3) an Atom package that
+extends pasted snippets with a link to a page showing this information. This
+section provides a brief description of each part.
 
 \begin{table*}[t]
-    \caption{Fields collected as meta-information from StackOverflow upon copy}
+    \caption{Fields collected from StackOverflow upon copy}
     \label{tab:chrome-extension-fields}
     \centering
     \begin{threeparttable}
@@ -14,7 +19,7 @@ The implementation of CodeStory consists of three parts that interact with each 
     \textbf{Field Name} & \textbf{Description} \\
     \hline
     copiedFrom 					& Whether the snippet was copied from a question or an answer.\\
-    type 						& Whether the copied snipped is code-only.\\
+    type 						& Whether the copied snipped is code-only or a combination of code and text.\\
     originalSelection 			& Exact text that was selected in the browser upon copy.\\
     questionTitle 				& Title of the question of the current page.\\
     questionUrl      			& URL of the question (i.e. the URL of the current page).\\
@@ -27,7 +32,7 @@ The implementation of CodeStory consists of three parts that interact with each 
     answerVotes*    			& Number of votes the answer received.\\
     accepted*					& Whether the answer was accepted.\\
     accessTime    				& Timestamp when the page was accessed.\\
-    fullCodeSnippet    			& The full code snippet (only available if the snippet is part of a code snippet).\\
+    fullCodeSnippet    			& The full code snippet (only available if the selected code is part of a code snippet).\\
     \hline
     \end{tabular*}
     \begin{tablenotes}\footnotesize
@@ -37,16 +42,19 @@ The implementation of CodeStory consists of three parts that interact with each 
 \end{table*}
 
 \subsection{Chrome Extension}
-The CodeStory Chrome extension mainly consists of a Content Script that is executed whenever a user visits a StackOverflow page. An event listener for the browser's \textit{copy event} is added and henceforth called whenever content from the page is copied to the clipboard.
+The CodeStory Chrome extension mainly consists of a Content Script that is executed whenever a user visits a StackOverflow page. An event listener for the browser's \textit{copy event} is added and called whenever content from the page is copied to the clipboard.
 
-The listener first collects the required meta-information from the current page an saves them in an \textit{storyData} object. The fields that are collected are shown in Table ~\ref{tab:chrome-extension-fields}. To be able to identify a \textit{storyData} object, a unique ID is created with a hash based on the current timestamp and the selected text. The created hash and the \textit{storyData} object are now sent to the CodeStory backend with a POST request. Measures to ensure acceptance of these cross-origin requests are taken on the backend and the Chrome extension may thus send simple Ajax requests.
+The listener first collects the required contextual information from the current page and saves it in a \textit{storyData} object whose fields are shown in Table ~\ref{tab:chrome-extension-fields}. This object is \texttt{POST}ed to the backend
+with a unique ID, the hash of the object combined with the current time, whenever a user copies content from StackOverflow. We ensure that the backend accepts cross-origin requests so that the Chrome extension can simply use \texttt{Ajax} calls.
 
-The missing link is now the one to the Atom package: the pasted snippet must be somehow associated with its meta-information. For that purpose, the clipboard content is enriched with the created hash which is achieved using the JavaScript clipboard API\footnote{https://developer.mozilla.org/en-US/docs/Web/API/ClipboardEvent}. The Atom package may then extract this hash from the clipboard content upon paste and proceed accordingly.
+In order for our Atom package to be able to link to the contextual information, we include the ID in the clipboard content using the JavaScript clipboard API\footnote{https://developer.mozilla.org/en-US/docs/Web/API/ClipboardEvent}. The Atom package then uses the ID to form a URL which is included in the pasted content **Fig.**.
 
 \subsection{Backend}
-XXX
+Our backend consists of a web server implemented in Node.js using the restify package and a redis database. The database stores the \textit{storyData} object using the ID mentioned in the previous section as the key. The web server provides three endpoints for creating and viewing the \textit{storyData} object. In particular, it provides two \texttt{REST} endpoints, \texttt{POST /codestory/rest} and \texttt{GET /codestory/rest/:id} for creating and retreiving the object, respectively, and a \texttt{GET /} endpoint for serving html files. An example of a CodeStory web page is shown in **Fig.**.
 
 \subsection{Atom Package}
-XXX
+Atom is a popular, multi-platform, text editor that supports extending functionality with packages written in JavaScript. We created a simple package to provide enhanced pasting: if the clipboard content came from our Chrome extension then the content will be inserted into the Atom editor with a CodeStory comment, including a link to the corresponding CodeStory page, above the content. Otherwise, the standard paste operation is performed (i.e no comment is inserted). The correct commenting characters are used when pasting content into any file type supported by Atom. For example, \texttt{// View code story:\textit{URL}} would be inserted into a JavaScript file while \texttt{\# View code story:\textit{URL}} would be inserted into a Python file.
+
+Maintaining expected paste behaviour was an important design choice that will affect developer adoption of the tool. We ensured that only clipboard content ending with the special tag, \texttt{CodeStory:\textit{<HASH>}}, would alter the default paste behaviour. Further, we set the default key-binding to be CTRL+SHIFT+V but the user can change the binding to override the default paste command by setting the binding to CTRL+V. Alternatively, the paste operation can be invoked from the packages menu in Atom.
 
 \end{document}
