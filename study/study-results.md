@@ -1,15 +1,14 @@
--a = dev1
--b = dev2
-+a = dev3
-+b = dev4
+Code review questions:
+ 1. What is the purpose of the method with the change?
+ 2. How did the method change?
+ 3. Why was this change made?
 
-# dev1 (-a) (i)
+# Dev1 (-a)
+(i) I'm not really familiar with the Json framework, nor its serialization by Google but it seems to me that the method got changed so the type of the listobject isn't defined when compiled, it has an unknown type and you let the gson framework decide what to do with it during runtime.
 
-I'm not really familiar with the Json framework, nor its serialization by Google but it seems to me that the method got changed so the type of the listobject isn't defined when compiled, it has an unknown type and you let the gson framework decide what to do with it during runtime.
+---
 
-# dev1 (-a) (i)
-
-What is the purpose of the method with the change?
+(i) What is the purpose of the method with the change?
 
 The purpose of log(f, r) appears to be to append a log record r (of type JsonLog) to a file f, though the method remains unfinished.
 
@@ -33,50 +32,80 @@ http://stackoverflow.com/questions/5813434/trouble-with-gson-serializing-an-arra
 https://github.com/google/gson/blob/master/UserGuide.md#serializing-and-deserializing-generic-types
 
 
-# dev3 (+a) (i)
+---
 
-The purpose is to convert a list of JSON objects into a list with a custom java type, JsonLog
+1. To log something
+2. Replaced `ArrayList` with `TypeToken`
+3. Not clear
+
+---
+
+1. I think that the method is trying to convert a json object into a gson object.
+2. It changed through the usage of the TypedToken List and anonymous class
+3. The method is really small, though I believe that it was changed to consider the usage of interfaces and generics. As far as I remember, there is an issue trying to get the type of  ArrayList<JsonLog>.class and the correct implementation would have to create an anonymous class.
+
+
+# Dev3 (+a)
+(i) The purpose is to convert a list of JSON objects into a list with a custom java type, JsonLog
 The second parameter in the call to gson.fromJson was changed from ArrayList.class to new TypeToken(){}.getType()
 The code did not compile
 
-# dev3 (+a) (i)
+---
 
-The purpose of the method is to parse a JSON file to an ArrayList of the custom object JsonLog. In the original version, the parsing fails because of an unconventional definition of the target Java type.
+(i) The purpose of the method is to parse a JSON file to an ArrayList of the custom object JsonLog. In the original version, the parsing fails because of an unconventional definition of the target Java type.
 
 The method changed in the definition of the target type which is necessary due to Java's type safety. The type itself as well as the generic of this type are now passed on to the Json parser Gson indirectly, by first instantiating a dummy TokenType with a generic of the target type and, second, by calling .getType() on this dummy object.
 
 The change was made because java class objects cannot simply be passed on as parameters if they are modified by generics.
 
+---
 
-# dev2 (-b) (i)
+1. Loads the JSON string into a JsonLog object.
+2. Changes the specification of the type of object into which we're loading the JSON string.
+3. I guess the old line 19 caused a compiler error?
 
-What is the purpose of the method with the change?
+---
+
+1. Log some data to a file
+2. Changed in the way you pass the object to gson.fromJson
+3. That one I do not know, this verbose syntax was quite unknown to me (`TypeToken<List<JsonLog>>(){}.getType()`)
+
+# Dev2 (-b)
+(i) What is the purpose of the method with the change?
 It compares to versions of a string and returns the difference as an integer with 0 being equal versions
 How did the method change?
 A manual string comparison is replaced by a built-in method using maven artifacts.
 Why was this change made?
 Presumably to make the comparison more robust and the code easier to read?
 
-# dev2 (-b) (i)
+---
 
-The purpose of the method appears to be to compare the versions of two Maven artefacts. According to Java conventions, the method returns an integer 1 iff version1 > version2, 0 iff version1 == version2, and -1 iff version1 < version2.
+(i) The purpose of the method appears to be to compare the versions of two Maven artefacts. According to Java conventions, the method returns an integer 1 iff version1 > version2, 0 iff version1 == version2, and -1 iff version1 < version2.
 
 A custom solution to the problem of comparing two version strings has been replaced by a method from the maven package. In the new method, DefaultArtefactVersion objects are instantiated given the respective version strings. These strings can then be compared according to maven standards. The new line 30, however, does not appear to have any effect.
 
 The change was made because bugs in custom solutions are usually more likely than bugs in big projects like maven. Also, referring the comparison to the official maven sources increases the chances of future compatibility should the format for maven version numbers ever change.
 
+---
 
+1. Checks whether the two versions are the same.
+2. Instead of doing a character-by-character string comparison of the two versions, converts them to a DefaultArtifactVersion object, and then compares the objects.
+3. Hard to tell without knowing how DefaultArtifactVersion works (I could look it up but I don't want to); my guess is that the previous version is not robust to differently formatted strings that represent the same version.
 
-# dev4 (+b) (i)
+---
 
-The Method compareTo compares the version numbers of the two version input strings.
+1. Compare versions described in two strings being passed to this given method.
+2. It was abstracted by `DefaultArtifactVersion(v)`.
+3. To hide details about the version format being used by this program, making it cleaner.
+
+# Dev4 (+b)
+(i) The Method compareTo compares the version numbers of the two version input strings.
 It got changed from doing it yourself to let Maven compare both versions.
 It probably got changed because it makes sense to use existing frameworks for things like this, instead of doing it by yourself
 
+---
 
-# dev4 (+b) (i)
-
-What is the purpose of the method with the change?
+(i) What is the purpose of the method with the change?
 
 The method compareVersions(a, b) determines the precedence of two version strings, a and b. Precedence is indicated by an integer return value: less-than-zero implies a < b, greater-than-zero implies a > b, and equal-to-zero implies a == b. The two version strings are compared almost lexicographically, except that if they have differing lengths, the shorter of the two version strings is padded with zeros for every extra version number component that the longer string has.
 
@@ -98,3 +127,15 @@ There are some disadvantages to the refactor, too:
 The programmer left a useless version variable in the code.
 The exact behavior of Maven's version comparison logic and the original logic may be subtly different, and requires testing.
 At first glance, the Maven implementation looks like it may be less efficient than the original implementation. This may be a problem if the method is called often.
+
+---
+
+1. Comparing two version numbers to an hardcoded one
+2. Started using `DefaultArtifactVersion` instead of doing the check manually
+3. To conform to the standards
+
+---
+
+1. The purpose of the method is to compare two project's versions, e.g. arquillian-1.0.1 < arquillian-1.1
+2. They removed the string/integer comparison and used a third party library (maven-artifcat) instead
+3. I think that for the sake of simplicity and not reinventing the well. Also, the new change is way simpler to understand than the older one, though I would write a small test to check whether the old code had any issues or it was updated only for the sake of simplicity. One thing that I noted was that the marked question on stackoverflow was not the most simple one and CodeStory pointed other solutions.
