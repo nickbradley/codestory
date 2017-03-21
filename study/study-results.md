@@ -3,6 +3,8 @@ Code review questions:
  2. How did the method change?
  3. Why was this change made?
 
+
+
 # Dev1 (-a)
 (i) I'm not really familiar with the Json framework, nor its serialization by Google but it seems to me that the method got changed so the type of the listobject isn't defined when compiled, it has an unknown type and you let the gson framework decide what to do with it during runtime.
 
