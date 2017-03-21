@@ -4,7 +4,8 @@ Figures:
  2. Screenshot of CodeStory (from web page) + show original StackOverflow page
 -->
 
-# CodeStory: Information Tracking for Program Comprehension
+# CodeStory: Capturing External Context in Source Code
+Information Tracking for Program Comprehension
 ## Abstract
 ## Introduction
  - What is the problem? Reasoning about code.
@@ -14,6 +15,9 @@ Figures:
  - The contributions from the paper
 
 ## Related Work
+ - Design rationale: http://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=4232835 (Sec II.A)
+ - Capturing Design Knowledge: https://www.computer.org/csdl/mags/so/2009/02/mso2009020025.pdf
+
 ## Scenario?
 This might be useful since we didn't evaluate the usage of the tool.
 
@@ -35,6 +39,7 @@ This might be useful since we didn't evaluate the usage of the tool.
 
 ### Threats to Validity
 
+<!-- Combine this with the Approach section -->
 ## Enabling Information Tracking
  - Discuss the implementation of the CodeStory tool
    - Google Chrome extension for capturing StackOverflow information for copy
@@ -48,6 +53,7 @@ This might be useful since we didn't evaluate the usage of the tool.
  - change in workflow
  - privacy
  - data mining (the codestory DB)
+ - Good for "micro" decisions; not so useful for "macro" decisions
 
 ## Future Work
  - Extend CodeStory to work with other programs (other than StackOverflow)
