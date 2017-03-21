@@ -2,6 +2,51 @@
 
 \begin{document}
 
-implementation.tex
+The implementation of CodeStory consists of three parts that interact with each other. There is (1) a Chrome extension responsible for collecting meta-information from StackOverflow when snippets are copied, (2) a backend receiving these information and persisting them in a database and (3) an Atom package that extends pasted snippets with a link to a page showing these meta information. This section provides a brief description of each part.
+
+\begin{table*}[t]
+    \caption{Fields collected as meta-information from StackOverflow upon copy}
+    \label{tab:chrome-extension-fields}
+    \centering
+    \begin{threeparttable}
+    \begin{tabular*}{\textwidth}{lll}
+    \hline
+    \textbf{Field Name} & \textbf{Description} \\
+    \hline
+    copiedFrom 					& Whether the snippet was copied from a question or an answer.\\
+    type 						& Whether the copied snipped is code-only.\\
+    originalSelection 			& Exact text that was selected in the browser upon copy.\\
+    questionTitle 				& Title of the question of the current page.\\
+    questionUrl      			& URL of the question (i.e. the URL of the current page).\\
+    questionContent     		& Full content of the question as text.\\
+    questionContentWithHtml     & Full content of the question preserving the HTML markup.\\
+    questionVotes				& Number of votes the question received.\\
+    answerUrl* 					& URL of the answer.\\
+    answerContent*    			& Full content of the answer as text.\\
+    answerContentWithHtml*		& Full content of the answer preserving the HTML markup.\\
+    answerVotes*    			& Number of votes the answer received.\\
+    accepted*					& Whether the answer was accepted.\\
+    accessTime    				& Timestamp when the page was accessed.\\
+    fullCodeSnippet    			& The full code snippet (only available if the snippet is part of a code snippet).\\
+    \hline
+    \end{tabular*}
+    \begin{tablenotes}\footnotesize
+        \item [*] Only available if copied from an answer.
+    \end{tablenotes}
+    \end{threeparttable}
+\end{table*}
+
+\subsection{Chrome Extension}
+The CodeStory Chrome extension mainly consists of a Content Script that is executed whenever a user visits a StackOverflow page. An event listener for the browser's \textit{copy event} is added and henceforth called whenever content from the page is copied to the clipboard.
+
+The listener first collects the required meta-information from the current page an saves them in an \textit{storyData} object. The fields that are collected are shown in Table ~\ref{tab:chrome-extension-fields}. To be able to identify a \textit{storyData} object, a unique ID is created with a hash based on the current timestamp and the selected text. The created hash and the \textit{storyData} object are now sent to the CodeStory backend with a POST request. Measures to ensure acceptance of these cross-origin requests are taken on the backend and the Chrome extension may thus send simple Ajax requests.
+
+The missing link is now the one to the Atom package: the pasted snippet must be somehow associated with its meta-information. For that purpose, the clipboard content is enriched with the created hash which is achieved using the JavaScript clipboard API\footnote{https://developer.mozilla.org/en-US/docs/Web/API/ClipboardEvent}. The Atom package may then extract this hash from the clipboard content upon paste and proceed accordingly.
+
+\subsection{Backend}
+XXX
+
+\subsection{Atom Package}
+XXX
 
 \end{document}
