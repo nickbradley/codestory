@@ -2,20 +2,11 @@
 
 \begin{document}
 
-Program comprehension impacts code quality, velocity and efficiency. However, it
-is a difficult task when only using code; many of the design and implementation
-decisions are lost when transferring the information into code. Unfortunately,
-capturing this information can be challenging, especially when it requires
-significant changes in developer workflow. Further, if the information is captured
-it must be linked to the section of code that it impacts and made available to
-reviewers in a way that enhances comprenshion without being obtrusive.
+Software quality is strongly dependent on a developer's knowledge of the rationale that lead to code changes. Capturing this rationale would significantly improve program understanding tasks leading to higher software quality. Unfortunately, this is a hard problem because decisions are often made unconsciously and are not being tracked. This is partly due to the fact there is little tooling support and partly due to developers and managers putting little value in this information.
 
-In this paper we describe a simple method for caputring developer reasoning
+In this paper we describe a simple method for capturing developer's reasoning
 during coding tasks. Our implementation, called CodeStory, integrates transparently
-into a developer's workflow by hooking into the standard copy-paste operation. In
-this iteration, when developers copy text or code snippets from StackOverflow,
-CodeStory will scrape the page capturing additional context and including it with
-the pasted content in their code. This information will later be seen by other
-developers giving them a better understanding of the author's reasoning.
+into a developer's workflow by hooking into the standard copy-paste operation. When developers copy text or code snippets from StackOverflow, CodeStory will capture additional context and include a reference to it with the pasted content in their code. This information can later be seen by other
+developers giving them a better understanding of the author's rationale.
 
 \end{document}
