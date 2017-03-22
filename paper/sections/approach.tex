@@ -2,6 +2,37 @@
 
 \begin{document}
 
-approach.tex
+Anything that does not directly result in usable code is an extra cost to developers. However, capturing decision rationale is important to improving future development. Thus, we want to minimize the upfront cost of capture while maximizing the future benefits of the captured information. Taking these constraints into consideration we decided on four key design decision crieteria for CodeStory:
+\begin{itemize}
+  \item Minimize disruption to code flow by including only a hyperlink to the comment,
+  \item Integrate capturing into the workflow without obstructing it,
+  \item Capture contextual information,
+  \item Present the caputured information in a meaningful way to increase its usefulness and value.
+\end{itemize}
+Here, we explore the decisions in detail.
+
+\subsection{Minimize Disruption}
+  Dirty code is a pain to look at. Developers do not want to be distracted by unnecessary clutter in their code. Because our tool hooks into the copy-paste operation it is important that the additional content added be as small as possible since the operation occurs so frequently. One way we handle this is by keeping the added comment to one line. Instead of including the contextual information in the comment itself, we provide a hyperlink to a database entry with the information. Since the paste operation inserts standard co
+
+  agumenting the pasted content with comments, it is import
+\subsection{Intgerate into Workflow}
+  - tooling: plugin can be made to work with any IDE (just a few lines of code)
+  - Could be enforced by the establishment
+  - Option to override standard paste or use a separate key binding
+  - Once inserted, it is a standard comment so will work with any editor or code tool; extra support
+  can be provided by IDE (e.g. showing the CodeStory next the code, or on hover)
+\subsection{Capture Context}
+  - What information do you capture? (pilot survey suggests...)
+  - Too much can be as bad as too little
+  - Should augment/enchance what is already captured in the actual code (i.e. the result of the decisions: so should provide the rationale for the decision)
+\subsection{Present}
+  - keep it close to the code (comment goes right above pasted content)
+  - minimize interpretation work for developer (use natural langauge + sentences)
+  - Make it viewable everywhere (webpage)
+
+
+
 
 \end{document}
+
+% There is a high cost to introducing new tools into a developer

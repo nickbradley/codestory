@@ -67,6 +67,8 @@ Figures:
 
 ## Future Work
  - Extend CodeStory to work with other programs (other than StackOverflow)
+ - Support for more IDEs
+ - Better Atom plugin - support showing the CodeStory in the IDE
  - Validate on other types of tasks (other than Code Review)
 
 ## Conclusion
