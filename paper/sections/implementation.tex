@@ -1,13 +1,8 @@
 \documentclass[../manifest.tex]{subfiles}
 
 \begin{document}
-
-The implementation of CodeStory consists of three parts that interact with each
-other. There is (1) a Chrome extension responsible for collecting contextual
-information from StackOverflow when snippets are copied, (2) a backend receiving
-this information and persisting it in a database and (3) an Atom package that
-extends pasted snippets with a link to a page showing this information. This
-section provides a brief description of each part.
+CodeStory is implemented as three components: (1) a Chrome extension responsible for collecting contextual information surrounding text copied from StackOverflow, (2) a backend receiving this information and persisting it in a database, and (3) an Atom package that
+extends pasted snippets with a link to a page showing this information. Here we briefly describe the implementation details of each component and how they interact with each other.
 
 \begin{table*}[t]
     \caption{Fields collected from StackOverflow upon copy}
