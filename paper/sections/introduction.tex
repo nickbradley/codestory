@@ -1,22 +1,15 @@
 \documentclass[../manifest.tex]{subfiles}
 
 \begin{document}
-A program is the result of decisions made based on information obtained from a
-variety of sources. Knowledge of these decisions can quickly evaporate if there
-is no process for capturing it. In practice, documenting knowlegde is often
-considered a resource-intensive process without tangible, short-term gains, so
-often it is skipped or performed inadaquately\cite{OZ:2008,NH:2007}. However,
-this information is useful in program comprehension tasks. In particular, we found
-there is strong industry support in  code
-review.
+Software is the result of decisions made based on information obtained from many sources. While software implicitly captures the results of these decisions, the rationale behind them evaporates unless some other method is used to explictly capture it. In practice, documenting knowlegde is often considered a resource-intensive process without tangible, short-term gains, so often it is skipped or performed inadaquately\cite{OZ:2008,NH:2007}. However, as our pilot survey indicates, it is exactly this rationale that developers require to provide effective code reviews and to confidently make changes to even simple codebases.
 
+Developers do not program in a vacuum: they use resources on the internet and colloborate with other people to accomplish a programming task. It is thhe boundary between people where there is a rich source of information as it is packaged to move from one person to another. One common instance of this is StackOverflow. Developers post technical questions about a problem they have encountered and then, after reviewing serval possible solutions contributed by other developers, they choose one that best fits their requirements. In this case, the StackOverflow web page acts as the boundary where knowledge must be packaged and its structure makes it easy to capture the rationale. Other possiblities include email, instant messaging and Google searches to look up reference material or to ask a question.
 
-
-approach  **introduce the information as a code story**
+To exploit this, we take a simple approach of capturing a small amount of information every time developer copies external text into their program from a supported source. This information tells a story about the code: where did it come from, what was the developer looking, why was the developer looking (in the case of stackoverflow, the question would indicate why), how (google search, email), when. We refer to this information colloquially as a code story.
 
 The contributions of this paper are as follows:
 \begin{itemize}
-  \item A simple approach for capturing text-based collaborative reasoning among
+  \item **Transfer of knowledge across a bouandry*** A simple approach for capturing text-based collaborative rationale among
   developers. This can include communications using email, instant messaging,
   websites and references.
   \item A prototype tool that implements this approach. It captures contextual
@@ -27,22 +20,9 @@ The contributions of this paper are as follows:
 
 Section 2 presents related work, ...
 
-% Capturing this information and making it available during
-% comprehension tasks like code reviews, maintenance, and introducing a codebase
-% to new developers, would make these tasks eaiser. Unfortunately, this information
-% is both hard to capture and hard to present in a meaningful way.
-%
-% Many tools focus on extracting the information
-%
-%  While this information helps code reviewers in understanding
-% However, this information canHowever, this information can be useful in program comprehension tasks be useful in program comprehension tasks
-%
-%
-%  - What is the information
-
-
-
-
-
 
 \end{document}
+
+*** We show that a little rationale does have short-term gains by making easiser the code review process***
+
+ However, this rationale is useful in program comprehension tasks.
