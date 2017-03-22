@@ -31,24 +31,23 @@ Figures:
  - Why is our approach reasonable  
 
 ## Evaluation
-### Pilot Study
+
+### Pilot Survey
  - Number participants + background
  - Questions
  - feedback
 
-### Task Description
+### Study Description
  - Describe what the task was
  - Who participated + background
 
-- Result of code review (qualitative)
-- Result of survey (~quantitative)
-- Summary of results (merge the two)
-
 ### Impact for Code Review Tasks
- - Results on tasks (e.g. survey output)
+ - Result of code review (qualitative)
+ - Result of survey (~quantitative)
+ - Summary of results (merge the two)
+
 
 ### Threats to Validity
-
 
 
 ## Implementation
