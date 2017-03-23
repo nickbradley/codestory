@@ -2,37 +2,16 @@
 
 \begin{document}
 
-Anything that does not directly result in usable code is an extra cost to developers. However, capturing decision rationale is important to improving future development. Thus, we want to minimize the upfront cost of capture while maximizing the future benefits of the captured information. Taking these constraints into consideration we decided on four key design decision crieteria for CodeStory:
-\begin{itemize}
-  \item Minimize disruption to code flow by including only a hyperlink to the comment,
-  \item Integrate capturing into the workflow without obstructing it,
-  \item Capture contextual information,
-  \item Present the caputured information in a meaningful way to increase its usefulness and value.
-\end{itemize}
-Here, we explore the decisions in detail.
+Anything that does not directly result in usable code is an extra cost to developers. However, capturing decision rationale is important for future development. Thus, we want to minimize the upfront cost of capture while simultaneously maximizing the future benefits of this captured information. Taking these constraints into consideration we decided on four key design decision crieteria for CodeStory.
 
-\subsection{Minimize Disruption}
-  Dirty code is a pain to look at. Developers do not want to be distracted by unnecessary clutter in their code. Because our tool hooks into the copy-paste operation it is important that the additional content added be as small as possible since the operation occurs so frequently. One way we handle this is by keeping the added comment to one line. Instead of including the contextual information in the comment itself, we provide a hyperlink to a database entry with the information. Since the paste operation inserts standard co
+\textbf{Minimize distruption to code flow.} Developers do not want to be distracted by unnecessary or verbose comments in their code. Because our tool hooks into the copy-paste operation, it can capture a great deal of information but including all of it as comments in the code is not desirable. After trying several different levels of comment verbosity, we concluded that a single-line comment would be the most appropriate even though it would require extra steps to see the full code story. Extending our tool to support displaying the story in the IDE would help mitigate this. Not including any comment would be ideal but that presents may challenges for linking the story with its corresponding code.
 
-  agumenting the pasted content with comments, it is import
-\subsection{Intgerate into Workflow}
-  - tooling: plugin can be made to work with any IDE (just a few lines of code)
-  - Could be enforced by the establishment
-  - Option to override standard paste or use a separate key binding
-  - Once inserted, it is a standard comment so will work with any editor or code tool; extra support
-  can be provided by IDE (e.g. showing the CodeStory next the code, or on hover)
-\subsection{Capture Context}
-  - What information do you capture? (pilot survey suggests...)
-  - Too much can be as bad as too little
-  - Should augment/enchance what is already captured in the actual code (i.e. the result of the decisions: so should provide the rationale for the decision)
-\subsection{Present}
-  - keep it close to the code (comment goes right above pasted content)
-  - minimize interpretation work for developer (use natural langauge + sentences)
-  - Make it viewable everywhere (webpage)
+\textbf{Transparently integrate into existing workflows.} A tool must be used if it is to provided any benefit. Since CodeStory captures information useful to future developers, it is imperative that it not require any extra effort on the part of the current developer. Hooking in to the standard copy-paste operation was an obvious way to capture information that the user was interested in bringing into their code without requiring any explicit cues.
 
+Our tool consists of three components, each of which is easily modifiable, making it easy to extend CodeStory to support user's existing tool sets. CodeStory automatically captures contextual information when a copy is invoked in a supported source program and pasting with the code story hyperlink can be done by a user defined keybinding, including the default paste keybinding. The code story is stored separately from the code: the insertion of a standard comment is the only modification to the code. This means CodeStory works with any code editor.
 
+\textbf{Capture the right contextual information.} The goal of CodeStory is to augment the decisions implicitly described by the implemented code with the rationale for the decisions. We had decide what information would be most pertient to this task -- capturing too little would make it hard to understand the rationale; too much and the key points are lost. To help decide this, we sent out a pilot survey described in the evaluation section.
 
+\textbf{Present the captured information in a meaningful way.} To allow code reviewers and maintainers to benefit from the code story it is important that it be close to the target code, viewable in any tool, and be easy to interpret. As mentioned before, CodeStory inserts a hyperlink directly above the pasted code. By default, CodeStory will serve the code story as an HTML web page so that it can be view in most IDEs and in any web browser, but can also serve it in other formats such as JSON and XML to make it viewable in custom applications. Perhaps more interesting is the code story summary which is presented in natural sentences. This makes the code story easier to understand than simply presenting the raw captured contextual information (although this is presented as well).
 
 \end{document}
-
-% There is a high cost to introducing new tools into a developer
