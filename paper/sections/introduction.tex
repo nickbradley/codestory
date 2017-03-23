@@ -1,21 +1,26 @@
 \documentclass[../manifest.tex]{subfiles}
 
 \begin{document}
-Software is the result of decisions made based on information obtained from many sources. While software implicitly captures the results of these decisions, the rationale behind them evaporates unless some other method is used to explictly capture it. In practice, documenting knowlegde is often considered a resource-intensive process without tangible, short-term gains, so often it is skipped or performed inadaquately\cite{OZ:2008,NH:2007}. However, as our pilot survey indicates, it is exactly this rationale that developers require to provide effective code reviews and to confidently make changes to even simple codebases.
+Software is the result of decisions made based on information obtained from many sources. While software implicitly captures the results of these decisions, their rationale evaporates unless some additonal process is used to capture it. In practice, documenting knowlegde is often considered a resource-intensive process without tangible, short-term gains, so often it is skipped or performed inadaquately\cite{OZ-2008,NH-2007}. However, we found that it is exactly this rationale that helps developers provide effective code reviews and could help with other comprehension tasks.
 
-Developers do not program in a vacuum: they use resources on the internet and colloborate with other people to accomplish a programming task. It is thhe boundary between people where there is a rich source of information as it is packaged to move from one person to another. One common instance of this is StackOverflow. Developers post technical questions about a problem they have encountered and then, after reviewing serval possible solutions contributed by other developers, they choose one that best fits their requirements. In this case, the StackOverflow web page acts as the boundary where knowledge must be packaged and its structure makes it easy to capture the rationale. Other possiblities include email, instant messaging and Google searches to look up reference material or to ask a question.
+Developers do not program in isolation: they use resources on the internet and colloborate with other people to accomplish a programming task. Collaboration tools such as email, instant messaging and web sites like StackOverflow are an ideal medium for capturing knowledge as it is transferred between individuals. This is due to the fact that these forms of communication are already in a text-based representation and, more importantly, follow a typically concise format of question-discussion-answer. We suggest that by linking these knowledge transfers to the sections of code that prompted the inquiry, signifcant value can be added in the form of increased future comprehension.
 
-To exploit this, we take a simple approach of capturing a small amount of information every time developer copies external text into their program from a supported source. This information tells a story about the code: where did it come from, what was the developer looking, why was the developer looking (in the case of stackoverflow, the question would indicate why), how (google search, email), when. We refer to this information colloquially as a code story.
+To exploit this, we created a tool called CodeStory that captures the knowledge transfer that occurs once a question is asked and links it to the code that prompted the question. It does this by inserting a comment with a hyperlink pointing to a web page that describes when and where the information came form, how the information was obtwhat the question was that prompted the inqury.
+
+CodeStory currently supports the popular developer Q\&A site, StackOverflow, as the transfer medium. On this site, developers post technical questions about a problem they have encountered and then, after reviewing serval possible solutions contributed by other developers, they choose the one that best fits their requirements. We take the action of a developer copying some or all of the content of an answer, typically a code snippet, as indicating their choice. At this point we collect additional information that forms the code story for the copied snippet and include a link to it when the snippet is pasted into code.
 
 The contributions of this paper are as follows:
 \begin{itemize}
-  \item **Transfer of knowledge across a bouandry*** A simple approach for capturing text-based collaborative rationale among
-  developers. This can include communications using email, instant messaging,
-  websites and references.
+  \item A simple approach for capturing text-based collaborative rationale among
+  developers as it is transfer from one developer to another in question-discussion-answer
+  type interactions. This can include communications using email, instant messaging, and
+  websites. The approach is also appropriate when the developer poses a question
+  that can be answered by consulting electronic documentation.
   \item A prototype tool that implements this approach. It captures contextual
   information surrounding snippets copied from StackOverflow and stores it in a
   database using a Google Chrome extension. An Atom\footnote{https://atom.io}
-  package lets developers paste the snippet with a hyperlink to the code story.
+  package lets developers paste the snippet with a hyperlink pointing to the
+  corresponding code story.
 \end{itemize}
 
 Section 2 presents related work, ...
@@ -26,3 +31,13 @@ Section 2 presents related work, ...
 % *** We show that a little rationale does have short-term gains by making easiser the code review process***
 %
 %  However, this rationale is useful in program comprehension tasks.
+
+
+
+%
+% In this paper
+% We focused specifically on the popular developer Q&A site,
+%
+% It is the boundary between people where there is a rich source of information as it is packaged to move from one person to another. One common instance of this is StackOverflow. Developers post technical questions about a problem they have encountered and then, after reviewing serval possible solutions contributed by other developers, they choose one that best fits their requirements. In this case, the StackOverflow web page acts as the boundary where knowledge must be packaged and its structure makes it easy to capture the rationale. Other possiblities include email, instant messaging and Google searches to look up reference material or to ask a question.
+%
+% To exploit this, we take a simple approach of capturing a small amount of information every time developer copies external text into their program from a supported source. This information tells a story about the code: where did it come from, what was the developer looking, why was the developer looking (in the case of stackoverflow, the question would indicate why), how (google search, email), when. We refer to this information colloquially as a code story.
