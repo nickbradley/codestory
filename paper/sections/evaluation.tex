@@ -59,22 +59,13 @@ In (1), a developer was struggling with deserializing a JSON string to an instan
   \label{fig:pull-request-1}
 \end{figure}
 
-In (2), a developer was interested in how to compare version strings semantically. This question is associated with \textit{semantic versioning}\footnote{http://semver.org/} which defines what versions should be considered higher than others, i.e. \textit{1.0.0-alpha < 1.0.0-alpha.1 < 1.0.0-beta < 1.0.0-rc.1 < 1.0.0}. More specifically, the question was: \textit{given two version strings a and b, which one is higher?} For this scenario, we chose a lower ranked answer\footnote{http://stackoverflow.com/a/27891752/1105907} as a base version to be replaced by a higher ranked answer\footnote{http://stackoverflow.com/a/6640972/1105907} as the improved version. Both are answers to the given question but neither is an accepted answer. We chose to use these answers because the accepted answer did not contain any code. Figures~\ref{fig:pull-request-2-1} and~\ref{fig:pull-request-2-2} show the diff of the change that we created for this scenario.
-
-% TODO: say something why simple question-answer in scenario 1 but somewhat hidden answer content in scenario 2?
+In (2), a developer was interested in how to compare version strings semantically. This question is associated with \textit{semantic versioning}\footnote{http://semver.org/} which defines what versions should be considered higher than others, i.e. \textit{1.0.0-alpha < 1.0.0-alpha.1 < 1.0.0-beta < 1.0.0-rc.1 < 1.0.0}. More specifically, the question was: \textit{given two version strings a and b, which one is higher?} For this scenario, we chose a lower ranked answer\footnote{http://stackoverflow.com/a/27891752/1105907} as a base version to be replaced by a higher ranked answer\footnote{http://stackoverflow.com/a/6640972/1105907} as the improved version. Both are answers to the given question but neither is an accepted answer. We chose to use these answers because the accepted answer did not contain any code. Figure~\ref{fig:pull-request-2} shows the diff of the change that we created for this scenario (note that this diff shows a CodeStory annotation for illustration purposes).
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=\linewidth]{pull-request-2-1}
-  \caption{Diff view for study scenario 2 (part 1)}
-  \label{fig:pull-request-2-1}
-\end{figure}
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=\linewidth]{pull-request-2-2}
-  \caption{Diff view for study scenario 2 (part 2)}
-  \label{fig:pull-request-2-2}
+  \includegraphics[width=\linewidth]{pull-request-2}
+  \caption{Diff view for study scenario 2}
+  \label{fig:pull-request-2}
 \end{figure}
 
 For both scenarios we now added CodeStory to the developer workflow. The resulting CodeStory pages are shown in Figures~\ref{fig:codestory-page-1} and~\ref{fig:codestory-page-2}.
