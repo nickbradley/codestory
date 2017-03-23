@@ -23,7 +23,9 @@ Figures:
 ## Related Work
  - Design rationale: http://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=4232835 (Sec II.A)
  - Capturing Design Knowledge: https://www.computer.org/csdl/mags/so/2009/02/mso2009020025.pdf
+ - Rationale Management in Software Engineering: http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.22.1259&rep=rep1&type=pdf
 
+  - **Controlled experiment similar to ours**  https://link.springer.com/chapter/10.1007/978-3-540-45051-1_14
 
 ## Approach
  - How do we solve the problem
