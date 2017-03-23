@@ -2,30 +2,8 @@
 
 \begin{document}
 
-Several papers have focused on documenting design rationale in a disciplined and structured manner.  Kyaw, et al. \cite{PK2003}, for example, describes a multi-dimensional design space tool called CoDEEDS that allows development teams to share knowledge by recording design descisions and rationale. Their system is more independent of the codebase instead linking to artefacts which they define as any things (or work products) produced as a result of design and development. It is designed to explictly capture high-level meta-information such as modelling information, design constraints, and process information in a centralized respository accessible through CoDEEDS. The meta-information is organized to allow tracibility of design decisions as they are made. Bratthall, et al. \cite{LB2000} followed a similar approach of requiring developers to explicitly record design rationale as it is applied using a separate system. They evaluate if the upfront cost of these systems reduces future costs by speeding up changes and improving correctness.
+Several papers have focused on documenting design rationale in a disciplined and structured manner.  Kyaw, et al. \cite{PK2003}, for example, describes a multi-dimensional design space tool called CoDEEDS that allows development teams to share knowledge by recording design decisions and rationale. Instead of linking to the codebase, their system links to artifacts. They define artifacts as any things (or work products) produced as a result of design and development. It is designed to explicitly capture high-level meta-information such as modelling information, design constraints, and process information in a centralized repository accessible through CoDEEDS. The meta-information is organized to allow traceability of design decisions as they are made. Bratthall, et al. \cite{LB2000} followed a similar approach of requiring developers to explicitly record design rationale using a separate system. They evaluate if the upfront cost of these systems reduces future costs by speeding up changes and improving correctness.
 
-Our work differs in several ways. First, we avoid the need of a separate system and directly integrate with existing developer workflows to reduce the number of different processes present in the development cycle. Second, link the rationale directly to snippets in the codebase instead of focusing on larger artefacts. This results in the links being distributed thorughout the codebase instead of in a centralized system (although the code stories are stored in a database). Finally, CodeStory is designed to capture information as developers ask questions; other tools are focused in supporting formal design discussions. We followed a similar evaluation methodology as that used by Bratthal but we focused on evaluating program comprehension through code reviews instead of evalutating performance on programming tasks.
-
-%
-%
-%
-%
-% - Knowledge management in teams. \cite{AS2012} argues that one of the benefits of an agile approach is that knowledge is diseminated throughout a team through measures such as srcum meetings, pair programming and open cultural. This seems to be an appropriate approach to efficiently and effectively develop software products. Unfortunately, people have limited memory so if the information isn't captured it will be lost. Our tools takes advantage of these features
-%  -persisting and diseminating knowledge in teams
-%  - our tool supports agile
-
-
-
-
+Our work differs in several ways. First, we avoid the need of a separate system and directly integrate with existing developer workflows to reduce the number of different processes present in the development cycle. Second, we link the rationale directly to snippets in the codebase instead of focusing on larger artifacts. This results in the links being distributed throughout the codebase instead of in a centralized system (although the code stories are stored in a database). Finally, CodeStory is designed to capture information as developers ask questions; other tools are focused in supporting formal design discussions. We followed a similar evaluation methodology as that used by Bratthal but we focused on evaluating program comprehension through code reviews instead of evaluating performance on programming tasks.
 
 \end{document}
-
-% We are focused more on code comprehension instead of design
-%
-% http://eprints.lincoln.ac.uk/18/1/iks-407-070.pdf - very similar
-%
-% Takes a broad approach of capturing and orgainizing all design knowledge
-%  - system is separate from code
-%  - different process
-%  - trying to centralize and organize knowledge (we keep it near the code - hints in the code - keep it distributed)
-%  - tracibility
