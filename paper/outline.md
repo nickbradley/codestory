@@ -62,7 +62,8 @@ Figures:
 ## Discussion
  - Talk about some of the feedback from the survey
  - Drawbacks of the tool
- - change in workflow
+    - change in workflow
+    - extra comments could be annoying
  - privacy
  - data mining (the codestory DB)
  - Good for "micro" decisions; not so useful for "macro" decisions
