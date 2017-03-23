@@ -14,10 +14,9 @@ We then let participants rate the following question on a scale of 1 (not useful
 
 Finally, we collected opinions on the particular information of interest using the same scale from 1 to 5: \textit{What elements from the above story would you consider useful?} Table~\ref{tab:elements-of-interest} shows the list of elements and the percentage of the responses that rated with either 3 (maybe useful), 4 (somewhat useful) or 5 (very useful).
 
-Considering the majority of neutral and positive responses to our pilot survey we felt confirmed that the idea behind CodeStory is valuable and we could continue our research. The single element that had a overly negative result in the survey was the \textit{Google search query leading to StackOverflow}. We consequently neglected this element for the implementation of CodeStory.
+Considering the majority of neutral and positive responses to our pilot survey we felt confirmed that the idea behind CodeStory is valuable and we could continue our research. The single element that had a overly negative result in the survey was the \textit{Google search query leading to StackOverflow}. We consequently chose to not include this element in the implementation of CodeStory.
 
 \begin{table*}[t]
-    \label{tab:elements-of-interest}
     \centering
     \begin{threeparttable}
     \begin{tabular*}{\textwidth}{ll}
@@ -40,6 +39,7 @@ Considering the majority of neutral and positive responses to our pilot survey w
     \end{tabular*}
     \end{threeparttable}
     \caption{Elements of interest for survey rating}
+    \label{tab:elements-of-interest}
 \end{table*}
 
 \subsection{Study Description} \label{eval-description}
@@ -51,7 +51,6 @@ In order to determine the usefulness of CodeStory in practice, we approached dev
 \end{enumerate}
 
 In (1), a developer was struggling with deserializing a JSON string to an instance of a custom Java class using the google-gson\footnote{https://github.com/google/gson} library. The developer tries to pass a class object for the generic type \code{ArrayList<JsonLog>} by passing \code{ArrayList<JsonLog>.class} to \code{fromJson} (Gson's method for deserializing a JSON string), which is no valid Java code and does not compile (because class objects cannot be created from generics that way in Java). The first answer to the question, which is also the accepted answer for the question, describes how to solve this problem by using Gson's \code{TypeToken} class for creating the desired class object: \code{new TypeToken<List<JsonLog> >(){}.getType()}. Figure~\ref{fig:pull-request-1} shows the diff of the change that we created for this scenario.
-% TODO: make >> work in code!!
 
 \begin{figure}[h]
   \centering
@@ -65,33 +64,33 @@ In (2), a developer was interested in how to compare version strings semanticall
 % TODO: say something why simple question-answer in scenario 1 but somewhat hidden answer content in scenario 2?
 
 \begin{figure}[h]
-  \label{fig:pull-request-2-1}
   \centering
   \includegraphics[width=\linewidth]{pull-request-2-1}
   \caption{Diff view for study scenario 2 (part 1)}
+  \label{fig:pull-request-2-1}
 \end{figure}
 
 \begin{figure}[h]
-  \label{fig:pull-request-2-2}
   \centering
   \includegraphics[width=\linewidth]{pull-request-2-2}
   \caption{Diff view for study scenario 2 (part 2)}
+  \label{fig:pull-request-2-2}
 \end{figure}
 
 For both scenarios we now added CodeStory to the developer workflow. The resulting CodeStory pages are shown in Figures~\ref{fig:codestory-page-1} and~\ref{fig:codestory-page-2}.
 
 \begin{figure}[h]
-  \label{fig:codestory-page-1}
   \centering
   \includegraphics[width=\linewidth]{codestory-page-1}
   \caption{CodeStory page for scenario 1}
+  \label{fig:codestory-page-1}
 \end{figure}
 
 \begin{figure}[h]
-  \label{fig:codestory-page-2}
   \centering
   \includegraphics[width=\linewidth]{codestory-page-2}
   \caption{CodeStory page for scenario 2}
+  \label{fig:codestory-page-2}
 \end{figure}
 
 For the changes described with scenario 1 and 2 we now created another version for each that includes a link to the respective CodeStory page as URL in a comment above the pasted content. Since scenario 2 contained two paste operations (one in an XML file and one in a Java file), two such comments were added respectively. This constellation gave us four treatments for our study:
@@ -105,7 +104,6 @@ For the changes described with scenario 1 and 2 we now created another version f
 The study was performed with 8 developers among which 4 participants were graduate students and 4 were industry developers (> 4 years of practical experience with Java). With participants from different backgrounds we ensured generalizability of our study for both academia and industry. Due to time constraints we decided to assign each participant 2 code reviews (we assumed ~10min for each code review). To avoid learning bias for the given scenarios and treatments, we decided to let each participant do one code review for each scenario, one with annotation and one without annotation. To further avoid learning bias, we ensured that 4 participants start with a code review with annotation and the other 4 start with a code review without annotation. Table~\ref{tab:study-outline} shows the outline of treatments and participants.
 
 \begin{table*}[t]
-    \label{tab:study-outline}
     \centering
     \begin{threeparttable}
     \begin{tabular*}{\textwidth}{lll}
@@ -123,7 +121,8 @@ The study was performed with 8 developers among which 4 participants were gradua
     \hline
     \end{tabular*}
     \end{threeparttable}
-    \caption{Study Outline}
+    \caption{Study outline}
+    \label{tab:study-outline}
 \end{table*}
 
 For each participant we forked our bootstrap repository and created two pull requests with respect to their treatments. In the description of each pull requests we asked the following questions:
@@ -137,56 +136,63 @@ We then added the participants as reviewers and instructed them to perform their
 
 After the second pull request, participants were finally approached with a survey to determine to what degree CodeStory helped them during the code review (for the annotated pull request) and whether they found the tool generally useful. We first asked participants to rank their experience for each pull request on a scale from 1 (very challenging) to 5 (very easy). We then asked \textit{Was the information provided by CodeStory useful?} Table~\ref{tab:survey-results} shows the results of the survey with the ratings of each participant and the associated treatment. Finally, we gave participants the option to comment on our tool: \textit{Do you have any comments about CodeStory? Were you missing any information?}
 
-With the analysis of the survey results, we found two \textbf{problems} of our study: (1) one participant (P4) did the pull requests in opposite order. We consider this a minor issue that does not affect the results. But (2) we consider major: one participant (P8) did not notice the CodeStory link and the associated result is therefore of no value. We therefore neglect P8 in the subsequent parts of this paper.
+With the analysis of the survey results, we found two \textbf{problems} of our study: (1) one participant (P4) did the pull requests in opposite order. We consider this a minor issue that does not affect the results. But (2) we consider major: one participant (P8) did not notice the CodeStory link and the associated result is therefore of no value. We therefore ignore the results of P8 in the subsequent parts of this paper.
 
 \begin{table*}[t]
-    \label{tab:survey-results}
     \centering
     \begin{threeparttable}
     \begin{tabular*}{\textwidth}{llllll}
     \hline
     \textbf{} & \textbf{T1} & \textbf{T2} & \textbf{T3} & \textbf{T4} & \textbf{CodeStory Rating} \\
     \hline
-    P1 &   & 2 & 4 &   & 5 \\
-    P2 &   & 2 & 4 &   & 5 \\
-    P3 & 4 &   &   & 5 & 5 \\
-    P4 & 1 &   &   & 5 & 4 \\
-    P5 & 2 &   &   & 5 & 5 \\
-    P6 & 3 &   &   & 5 & 5 \\
-    P7 &   & 5 & 3 &   & 4 \\
+    P1  &   & 2 & 4 &   & 5 \\
+    P2  &   & 2 & 4 &   & 5 \\
+    P3  & 4 &   &   & 5 & 5 \\
+    P4  & 1 &   &   & 5 & 4 \\
+    P5  & 2 &   &   & 5 & 5 \\
+    P6  & 3 &   &   & 5 & 5 \\
+    P7  &   & 5 & 3 &   & 4 \\
     P8* &   & 4 & 2 &   & 2 \\
     \hline
     \end{tabular*}
     \begin{tablenotes}\footnotesize
-      \item [*] Neglected in subsequent sections because participant did not notice the CodeStory tool.
+      \item [*] Ignored in subsequent sections because participant did not notice the CodeStory tool.
     \end{tablenotes}
     \end{threeparttable}
     \caption{Survey results}
+    \label{tab:survey-results}
 \end{table*}
 
 \subsection{Impact for Code Review Tasks} \label{eval-impact}
 
-Comparing code review comments without (T1/T2) and with CodeStory annotation (T3/T4), we could clearly see an increase in quality using our tool. Basically, T1 and T2 induce great amounts of guessing in finding the right answers to our questions, primarily visible through phrases like "presumably", "it appears to be", "it seems to me", "I think", "I believe", etc. A decrease in quality in answers to our questions (1) \textit{What is the purpose of the method with the change?}, (2) \textit{How did the method change?}, (3) \textit{Why was this change made?} is visible for T1/T2: while (1) could often be answered relatively easily, (2) proved very hard and (3) proved nearly impossible. That is why we observe most guessing with (3). Some participants tried to do their own online research for the questions on T1/T2 but were mostly still unable to provide good answers. Others commented that question 3 is not answerable for T1/T2. While we could generally observe higher quality answers from industry developers than from graduate students, the relationship between code reviews with and without our tool remains the same and we can therefore neglect variance resulting from participants' backgrounds.
+\textbf{Comparing code review comments} without (T1/T2) and with CodeStory annotation (T3/T4), we could clearly see an increase in quality using our tool. Basically, T1 and T2 induce great amounts of guessing in finding the right answers to our questions, primarily visible through phrases like "presumably", "it appears to be", "it seems to me", "I believe", etc. A decrease in quality in answers to our questions (1) \textit{What is the purpose of the method with the change?}, (2) \textit{How did the method change?}, (3) \textit{Why was this change made?} is visible for T1/T2: while (1) could often be answered relatively easily, (2) proved very hard and (3) proved nearly impossible. That is why we observe most guessing with (3). Some participants tried to do their own online research for the questions on T1/T2 but were mostly still unable to provide good answers. Others commented that question 3 is not answerable for T1/T2. While we could generally observe higher quality answers from industry developers than from graduate students, the relationship between code reviews without and with our tool remains the same and we can therefore neglect variance resulting from participants' backgrounds.
 
 In contrast, comments on code reviews with CodeStory (T3/T4) showed significantly higher quality. Most participants provided very good answers to our questions for these treatments. The additional contextual information provided by CodeStory clearly helped them to answer what "really happened" for the given code changed, i.e. what the developer's reasoning was during implementation. The following list provides representative examples of code review comments with answers to our questions for each treatment:
 
 \begin{itemize}
-  \item \textbf{T1:}
-\textit{(1) I think that the method is trying to convert a json object into a gson object.
+  \item \textbf{Scenario 1 without annotation (T1):}
+\textit{
+(1) I think that the method is trying to convert a json object into a gson object.
 (2) It changed through the usage of the TypedToken List and anonymous class.
-(3) The method is really small, though I believe that it was changed to consider the usage of interfaces and generics. As far as I remember, there is an issue trying to get the type of  ArrayList<JsonLog>.class and the correct implementation would have to create an anonymous class.}
-  \item \textbf{T2:} XXX
-  \item \textbf{T3:} XXX
-  \item \textbf{T4:} XXX
+(3) The method is really small, though I believe that it was changed to consider the usage of interfaces and generics. As far as I remember, there is an issue trying to get the type of  ArrayList<JsonLog>.class and the correct implementation would have to create an anonymous class.
+}
+  \item \textbf{Scenario 1 with annotation (T3):}
+\textit{
+(1) The purpose of the method is to parse a JSON file to an ArrayList of the custom object JsonLog. In the original version, the parsing fails because of an unconventional definition of the target Java type. (2) The method changed in the definition of the target type which is necessary due to Java's type safety. The type itself as well as the generic of this type are now passed on to the Json parser Gson indirectly, by first instantiating a dummy TokenType with a generic of the target type and, second, by calling .getType() on this dummy object. (3) The change was made because java class objects cannot simply be passed on as parameters if they are modified by generics.
+}
+  \item \textbf{Scenario 2 without annotation (T2):}
+\textit{
+(1) Checks whether the two versions are the same. (2) Instead of doing a character-by-character string comparison of the two versions, converts them to a DefaultArtifactVersion object, and then compares the objects. (3) Hard to tell without knowing how DefaultArtifactVersion works (I could look it up but I don't want to); my guess is that the previous version is not robust to differently formatted strings that represent the same version.
+}
+  \item \textbf{Scenario 2 with annotation (T4):}
+\textit{
+(1) The method compareVersions(a, b) determines the precedence of two version strings, a and b. Precedence is indicated by an integer return value: less-than-zero implies a < b, greater-than-zero implies a > b, and equal-to-zero implies a == b. (2) The implementation was changed from a homebrew implementation to an off-the-shelf implementation using Maven. Instead of comparing the versions as strings, they are now parsed into properly typed objects implementing the Comparable<T> interface. (3) (...) the programmer needed to implement a new feature or quirk to the version comparison logic that Maven already handles, such as comparing non-numerical version components (e.g. the "-rc1" in "1.10-rc1"), and didn't want to reinvent the wheel.
+}
 \end{itemize}
 
-% much guessing in - (presumably, it appears to be, it seems to me, I think, I believe...)
-% quality of comments decreases from 1 to 3 in -
-% quality of industry developers comments is generally higher but trend of - to + are the same
-% some googled
-% some commented that answering is not possible without further information on -
+\textbf{Analyzing the results of the final survey} further strengthens our positive impression of CodeStory. This is most clearly visible in the comparison of the code reviews for scenario 2 (recall that we neglected the results from one participant as described in the previous section). On our scale from 1 (very challenging) to 5 (very easy), participants rated the version without annotation (T2) with 2, 2, 5 whereas all participants rated the version with annotation with 5. Scenario 1 shows similar results, though not as visible as in scenario 2. In our interpretation, this is due to the fact that the answer on StackOverflow was a simple one-liner and that question as well as answer provided far less detailed information about the problem than in scenario 2. Participants rated the version of scenario 1 without our tool (T1) with 4, 1, 2, 3 whereas they rated the version with our tool with 4, 4, 3. In summary, \textit{the average of the ratings without our tool is \textbf{2.71} while the average of the ratings with our tool is \textbf{4.43}}.
 
-% examples for treatments
+\textbf{Analyzing the optional comments of the final survey}, we noticed that one participants missed exactly the element of information that we neglected after our pilot survey, the \textit{Google search query leading to StackOverflow} (see section~\ref{eval-survey}): \textit{The search term(s) which led the programmer to that version comparison StackOverflow question could have been useful for explaining why s/he made the change. Search terms such as "java version comparison algorithm", "java version comparison best practice", and "java version comparison pre-release metadata" might all lead to that question, but convey different intents/requirements.} Our interpretation is that the participants in the pilot survey might not have fully understood what we referred to with this element and they would most likely have considered it more useful in an actual code review.
 
 \subsection{Threads to Validity} \label{eval-threats}
 
