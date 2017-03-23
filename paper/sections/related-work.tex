@@ -1,28 +1,39 @@
 \documentclass[../manifest.tex]{subfiles}
 
 \begin{document}
-We are focused more on code comprehension instead of design
+
+Several papers \cite{PK2003, LB2000} have focused on documenting design rationale in a disciplined and structured manner. This approach complicates the development process and adds to the initial cost of developing the software. Kyaw, et al., for example, describes a multi-dimensional design space tool called CoDEEDS that allows development teams to share knowledge by recording design descisions and rationale. Their system is more independent of the codebase instead linking to artefacts which they define as any things (or work products) produced as a result of design and development. It is designed to explictly capture high-level meta-information such as modelling information, design constraints, and process information in a centralized respository accessible through CoDEEDS. The meta-information is organized to allow tracibility of design decisions as they are made.
+
+Our work differs in several ways. First, we avoid the need of a separate system and directly integrate with existing developer workflows to reduce the number of different processes present in the development cycle. Second, link the rationale directly to snippets in the codebase instead of focusing on larger artefacts. This results in the links being distributed thorughout the codebase instead of in a centralized system (although the code stories are stored in a database). Finally, CodeStory is designed to capture information as developers ask questions; CoDEEDS is used in formal design discussions.
 
 
-Capturing design rationale has been a goal for many years.
-
-http://eprints.lincoln.ac.uk/18/1/iks-407-070.pdf - very similar
-
-Takes a broad approach of capturing and orgainizing all design knowledge
- - system is separate from code
- - different process
- - trying to centralize and organize knowledge (we keep it near the code - hints in the code - keep it distributed)
- - tracibility
+- Knowledge management in teams. \cite{AS2012} argues that one of the benefits of an agile approach is that knowledge is diseminated throughout a team through measures such as srcum meetings, pair programming and open cultural. This seems to be an appropriate approach to efficiently and effectively develop software products. Unfortunately, people have limited memory so if the information isn't captured it will be lost. Our tools takes advantage of these features
+ -persisting and diseminating knowledge in teams
+ - our tool supports agile
 
 
-Several papers [is a DR vital] are focused on documenting the design rationale of software architecture and its evolution in a disciplined and structured manner. The problem with this approach is that it complicates the development process and adds to the initial cost of developing the software. Our approach differs from these because it is not a formal process and does not add much to the cost of development at any stage. Our tool is designed to capture just-enough, just-in-time without creating another process for a developer to work through. However, we do follow the methodology of [is a DR vital] but evaluate the captured rationale's ability to improve comprehension tasks instead of programming tasks.
+
+Work focused
+
+
+
+Our approach differs from these because it is not a formal process and does not add much to the cost of development at any stage. Our tool is designed to capture just-enough, just-in-time without creating another process for a developer to work through. However, we do follow the methodology of [is a DR vital] but evaluate the captured rationale's ability to improve comprehension tasks instead of programming tasks.
 
 - Focused explicitly on capturing the design rationale (i.e. make comments as you go -- forces you to think but my be nelecteg due to high-cost and inconvenience)
 - We are more focused on implicit design rationale by capturing snippets of ... as knowledge is transferred between developers through text-based communication.
 
 
-- Knowledge management in teams. [http://research.ijcaonline.org/irafit/number9/irafit1072.pdf] argues that one of the benefits of an agile approach is that knowledge is diseminated throughout a team through measures such as srcum meetings, pair programming and open cultural. This seems to be an appropriate approach to efficiently and effectively develop software products. Unfortunately, people have limited memory so if the information isn't captured it will be lost. Our tools takes advantage of these features
- -persisting and diseminating knowledge in teams
+
 
 
 \end{document}
+
+% We are focused more on code comprehension instead of design
+%
+% http://eprints.lincoln.ac.uk/18/1/iks-407-070.pdf - very similar
+%
+% Takes a broad approach of capturing and orgainizing all design knowledge
+%  - system is separate from code
+%  - different process
+%  - trying to centralize and organize knowledge (we keep it near the code - hints in the code - keep it distributed)
+%  - tracibility
