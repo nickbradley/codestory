@@ -128,22 +128,69 @@ The study was performed with 8 developers among which 4 participants were gradua
 
 For each participant we forked our bootstrap repository and created two pull requests with respect to their treatments. In the description of each pull requests we asked the following questions:
 \begin{enumerate}
-  \item What is the purpose of the method with the change?
-  \item How did the method change?
-  \item Why was this change made?
+  \item \textit{What is the purpose of the method with the change?}
+  \item \textit{How did the method change?}
+  \item \textit{Why was this change made?}
 \end{enumerate}
 
 We then added the participants as reviewers and instructed them to perform their code reviews in sequential order by answering our questions as comments on the pull requests. The code reviews were thus performed online and no time constraints besides the sequential order were given since we did not see any benefits in imposing further restrictions on participants.
 
-After the second pull request, participants were finally approached with a survey to determine to what degree CodeStory helped them during the code review (for the annotated pull request) and whether they found it useful. We first asked participants to rank their experience for each pull request on a scale from 1 (very challenging) to 5 (very easy). 
+After the second pull request, participants were finally approached with a survey to determine to what degree CodeStory helped them during the code review (for the annotated pull request) and whether they found the tool generally useful. We first asked participants to rank their experience for each pull request on a scale from 1 (very challenging) to 5 (very easy). We then asked \textit{Was the information provided by CodeStory useful?} Table~\ref{tab:survey-results} shows the results of the survey with the ratings of each participant and the associated treatment. Finally, we gave participants the option to comment on our tool: \textit{Do you have any comments about CodeStory? Were you missing any information?}
 
-% TODO: tables!
+With the analysis of the survey results, we found two \textbf{problems} of our study: (1) one participant (P4) did the pull requests in opposite order. We consider this a minor issue that does not affect the results. But (2) we consider major: one participant (P8) did not notice the CodeStory link and the associated result is therefore of no value. We therefore neglect P8 in the subsequent parts of this paper.
 
-For the first pull request (the JSON serialization scenario), 4 participants rated with 4 and 4 participants rated with 5 and there is no tendency regarding participants' backgrounds (i.e. students and industry developers rated the same). For the second pull request (the string version comparison scenario) there is more variance: 1 participant rated with 1, 4 participants rated with 2, 2 participants rated with 3 and 1 participant rated with 5.
-
+\begin{table*}[t]
+    \label{tab:survey-results}
+    \centering
+    \begin{threeparttable}
+    \begin{tabular*}{\textwidth}{llllll}
+    \hline
+    \textbf{} & \textbf{T1} & \textbf{T2} & \textbf{T3} & \textbf{T4} & \textbf{CodeStory Rating} \\
+    \hline
+    P1 &   & 2 & 4 &   & 5 \\
+    P2 &   & 2 & 4 &   & 5 \\
+    P3 & 4 &   &   & 5 & 5 \\
+    P4 & 1 &   &   & 5 & 4 \\
+    P5 & 2 &   &   & 5 & 5 \\
+    P6 & 3 &   &   & 5 & 5 \\
+    P7 &   & 5 & 3 &   & 4 \\
+    P8* &   & 4 & 2 &   & 2 \\
+    \hline
+    \end{tabular*}
+    \begin{tablenotes}\footnotesize
+      \item [*] Neglected in subsequent sections because participant did not notice the CodeStory tool.
+    \end{tablenotes}
+    \end{threeparttable}
+    \caption{Survey results}
+\end{table*}
 
 \subsection{Impact for Code Review Tasks} \label{eval-impact}
 
+Comparing code review comments without (T1/T2) and with CodeStory annotation (T3/T4), we could clearly see an increase in quality using our tool. Basically, T1 and T2 induce great amounts of guessing in finding the right answers to our questions, primarily visible through phrases like "presumably", "it appears to be", "it seems to me", "I think", "I believe", etc. A decrease in quality in answers to our questions (1) \textit{What is the purpose of the method with the change?}, (2) \textit{How did the method change?}, (3) \textit{Why was this change made?} is visible for T1/T2: while (1) could often be answered relatively easily, (2) proved very hard and (3) proved nearly impossible. That is why we observe most guessing with (3). Some participants tried to do their own online research for the questions on T1/T2 but were mostly still unable to provide good answers. Others commented that question 3 is not answerable for T1/T2. While we could generally observe higher quality answers from industry developers than from graduate students, the relationship between code reviews with and without our tool remains the same and we can therefore neglect variance resulting from participants' backgrounds.
+
+In contrast, comments on code reviews with CodeStory (T3/T4) showed significantly higher quality. Most participants provided very good answers to our questions for these treatments. The additional contextual information provided by CodeStory clearly helped them to answer what "really happened" for the given code changed, i.e. what the developer's reasoning was during implementation. The following list provides representative examples of code review comments with answers to our questions for each treatment:
+
+\begin{itemize}
+  \item \textbf{T1:}
+\textit{(1) I think that the method is trying to convert a json object into a gson object.
+(2) It changed through the usage of the TypedToken List and anonymous class.
+(3) The method is really small, though I believe that it was changed to consider the usage of interfaces and generics. As far as I remember, there is an issue trying to get the type of  ArrayList<JsonLog>.class and the correct implementation would have to create an anonymous class.}
+  \item \textbf{T2:} XXX
+  \item \textbf{T3:} XXX
+  \item \textbf{T4:} XXX
+\end{itemize}
+
+% much guessing in - (presumably, it appears to be, it seems to me, I think, I believe...)
+% quality of comments decreases from 1 to 3 in -
+% quality of industry developers comments is generally higher but trend of - to + are the same
+% some googled
+% some commented that answering is not possible without further information on -
+
+% examples for treatments
+
 \subsection{Threads to Validity} \label{eval-threats}
+
+% problems 1 and 2 described
+% what is higher quality? does this really lead to higher software quality?
 
 \end{document}

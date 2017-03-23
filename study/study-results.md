@@ -5,10 +5,12 @@ Code review questions:
 
 
 
-# Dev1 (-a)
+# Dev1 (-a) 
+P3
 (i) I'm not really familiar with the Json framework, nor its serialization by Google but it seems to me that the method got changed so the type of the listobject isn't defined when compiled, it has an unknown type and you let the gson framework decide what to do with it during runtime.
 
----
+--- 
+P5
 
 (i) What is the purpose of the method with the change?
 
@@ -35,12 +37,14 @@ https://github.com/google/gson/blob/master/UserGuide.md#serializing-and-deserial
 
 
 ---
+P4
 
 1. To log something
 2. Replaced `ArrayList` with `TypeToken`
 3. Not clear
 
 ---
+P6
 
 1. I think that the method is trying to convert a json object into a gson object.
 2. It changed through the usage of the TypedToken List and anonymous class
@@ -48,11 +52,15 @@ https://github.com/google/gson/blob/master/UserGuide.md#serializing-and-deserial
 
 
 # Dev3 (+a)
+
+P1
+
 (i) The purpose is to convert a list of JSON objects into a list with a custom java type, JsonLog
 The second parameter in the call to gson.fromJson was changed from ArrayList.class to new TypeToken(){}.getType()
 The code did not compile
 
 ---
+P7
 
 (i) The purpose of the method is to parse a JSON file to an ArrayList of the custom object JsonLog. In the original version, the parsing fails because of an unconventional definition of the target Java type.
 
@@ -61,16 +69,20 @@ The method changed in the definition of the target type which is necessary due t
 The change was made because java class objects cannot simply be passed on as parameters if they are modified by generics.
 
 ---
+P2
 
 1. Loads the JSON string into a JsonLog object.
 2. Changes the specification of the type of object into which we're loading the JSON string.
 3. I guess the old line 19 caused a compiler error?
 
 ---
+P8
 
 1. Log some data to a file
 2. Changed in the way you pass the object to gson.fromJson
 3. That one I do not know, this verbose syntax was quite unknown to me (`TypeToken<List<JsonLog>>(){}.getType()`)
+
+
 
 # Dev2 (-b)
 (i) What is the purpose of the method with the change?
