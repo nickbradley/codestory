@@ -164,21 +164,27 @@ In contrast, comments on code reviews with CodeStory (T3/T4) showed significantl
 \begin{itemize}
   \item \textbf{Scenario 1 without annotation (T1):}
 \textit{
-(1) I think that the method is trying to convert a json object into a gson object.
-(2) It changed through the usage of the TypedToken List and anonymous class.
-(3) The method is really small, though I believe that it was changed to consider the usage of interfaces and generics. As far as I remember, there is an issue trying to get the type of  ArrayList<JsonLog>.class and the correct implementation would have to create an anonymous class.
+Q1: I think that the method is trying to convert a json object into a gson object.
+Q2: It changed through the usage of the TypedToken List and anonymous class.
+Q3: The method is really small, though I believe that it was changed to consider the usage of interfaces and generics. As far as I remember, there is an issue trying to get the type of  ArrayList<JsonLog>.class and the correct implementation would have to create an anonymous class.
 }
   \item \textbf{Scenario 1 with annotation (T3):}
 \textit{
-(1) The purpose of the method is to parse a JSON file to an ArrayList of the custom object JsonLog. In the original version, the parsing fails because of an unconventional definition of the target Java type. (2) The method changed in the definition of the target type which is necessary due to Java's type safety. The type itself as well as the generic of this type are now passed on to the Json parser Gson indirectly, by first instantiating a dummy TokenType with a generic of the target type and, second, by calling .getType() on this dummy object. (3) The change was made because java class objects cannot simply be passed on as parameters if they are modified by generics.
+Q1: The purpose of the method is to parse a JSON file to an ArrayList of the custom object JsonLog. In the original version, the parsing fails because of an unconventional definition of the target Java type.
+Q2: The method changed in the definition of the target type which is necessary due to Java's type safety. The type itself as well as the generic of this type are now passed on to the Json parser Gson indirectly, by first instantiating a dummy TokenType with a generic of the target type and, second, by calling .getType() on this dummy object. 
+Q3: The change was made because java class objects cannot simply be passed on as parameters if they are modified by generics.
 }
   \item \textbf{Scenario 2 without annotation (T2):}
 \textit{
-(1) Checks whether the two versions are the same. (2) Instead of doing a character-by-character string comparison of the two versions, converts them to a DefaultArtifactVersion object, and then compares the objects. (3) Hard to tell without knowing how DefaultArtifactVersion works (I could look it up but I don't want to); my guess is that the previous version is not robust to differently formatted strings that represent the same version.
+Q1: Checks whether the two versions are the same.
+Q2: Instead of doing a character-by-character string comparison of the two versions, converts them to a DefaultArtifactVersion object, and then compares the objects.
+Q3: Hard to tell without knowing how DefaultArtifactVersion works (I could look it up but I don't want to); my guess is that the previous version is not robust to differently formatted strings that represent the same version.
 }
   \item \textbf{Scenario 2 with annotation (T4):}
 \textit{
-(1) The method compareVersions(a, b) determines the precedence of two version strings, a and b. Precedence is indicated by an integer return value: less-than-zero implies a < b, greater-than-zero implies a > b, and equal-to-zero implies a == b. (2) The implementation was changed from a homebrew implementation to an off-the-shelf implementation using Maven. Instead of comparing the versions as strings, they are now parsed into properly typed objects implementing the Comparable<T> interface. (3) (...) the programmer needed to implement a new feature or quirk to the version comparison logic that Maven already handles, such as comparing non-numerical version components (e.g. the "-rc1" in "1.10-rc1"), and didn't want to reinvent the wheel.
+Q1: The method compareVersions(a, b) determines the precedence of two version strings, a and b. Precedence is indicated by an integer return value: less-than-zero implies a < b, greater-than-zero implies a > b, and equal-to-zero implies a == b.
+Q2: The implementation was changed from a homebrew implementation to an off-the-shelf implementation using Maven. Instead of comparing the versions as strings, they are now parsed into properly typed objects implementing the Comparable<T> interface.
+Q3: (...) the programmer needed to implement a new feature or quirk to the version comparison logic that Maven already handles, such as comparing non-numerical version components (e.g. the "-rc1" in "1.10-rc1"), and didn't want to reinvent the wheel.
 }
 \end{itemize}
 
@@ -190,5 +196,13 @@ In contrast, comments on code reviews with CodeStory (T3/T4) showed significantl
 
 % problems 1 and 2 described
 % what is higher quality? does this really lead to higher software quality?
+% does not generalize to comprehension tasks
+% how we conducted the study
+% does the evaluation directly answer our main question?
+% bias in participants (industry vs. academic)
+% interpretation of comments is subjective
+% may not have captured all views/interpretations/feelings (question was just "do you consider it useful")
+% scenarios are not realistic/practical/representative (generalizability) => diffs are too short and just a almost empty bootstrap repository
+% did not evaluate our tool but only the "results of our tool"
 
 \end{document}
