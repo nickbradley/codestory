@@ -4,29 +4,34 @@
 CodeStory is implemented as three components: (1) a Chrome extension responsible for collecting contextual information surrounding text copied from StackOverflow, (2) a backend receiving this information and persisting it in a database, and (3) an Atom package that
 extends pasted snippets with a link to a page showing this information. Here we briefly describe the implementation details of each component and how they interact with each other.
 
+\subsection{Chrome Extension}
+The CodeStory Chrome extension mainly consists of a Content Script that is executed whenever a user visits a StackOverflow page. An event listener for the browser's \textit{copy event} is added and called whenever content from the page is copied to the clipboard.
+
+The listener first collects the required contextual information from the current page and saves it in a \textit{storyData} object whose fields are shown in Table ~\ref{tab:chrome-extension-fields}. This object is \texttt{POST}ed to the backend
+with a unique ID, the hash of the object combined with the current time, whenever a user copies content from StackOverflow. We ensure that the backend accepts cross-origin requests so that the Chrome extension can simply use \texttt{Ajax} calls.
+
 \begin{table*}[t]
-    \label{tab:chrome-extension-fields}
     \centering
     \begin{threeparttable}
     \begin{tabular*}{\textwidth}{lll}
     \hline
     \textbf{Field Name} & \textbf{Description} \\
     \hline
-    copiedFrom 					& Whether the snippet was copied from a question or an answer.\\
-    type 						& Whether the copied snipped is code-only or a combination of code and text.\\
-    originalSelection 			& Exact text that was selected in the browser upon copy.\\
-    questionTitle 				& Title of the question of the current page.\\
-    questionUrl      			& URL of the question (i.e. the URL of the current page).\\
-    questionContent     		& Full content of the question as text.\\
+    copiedFrom                  & Whether the snippet was copied from a question or an answer.\\
+    type                        & Whether the copied snipped is code-only or a combination of code and text.\\
+    originalSelection           & Exact text that was selected in the browser upon copy.\\
+    questionTitle               & Title of the question of the current page.\\
+    questionUrl                 & URL of the question (i.e. the URL of the current page).\\
+    questionContent             & Full content of the question as text.\\
     questionContentWithHtml     & Full content of the question preserving the HTML markup.\\
-    questionVotes				& Number of votes the question received.\\
-    answerUrl* 					& URL of the answer.\\
-    answerContent*    			& Full content of the answer as text.\\
-    answerContentWithHtml*		& Full content of the answer preserving the HTML markup.\\
-    answerVotes*    			& Number of votes the answer received.\\
-    accepted*					& Whether the answer was accepted.\\
-    accessTime    				& Timestamp when the page was accessed.\\
-    fullCodeSnippet    			& The full code snippet (only available if the selected code is part of a code snippet).\\
+    questionVotes               & Number of votes the question received.\\
+    answerUrl*                  & URL of the answer.\\
+    answerContent*              & Full content of the answer as text.\\
+    answerContentWithHtml*      & Full content of the answer preserving the HTML markup.\\
+    answerVotes*                & Number of votes the answer received.\\
+    accepted*                   & Whether the answer was accepted.\\
+    accessTime                  & Timestamp when the page was accessed.\\
+    fullCodeSnippet             & The full code snippet (only available if the selected code is part of a code snippet).\\
     \hline
     \end{tabular*}
     \begin{tablenotes}\footnotesize
@@ -34,13 +39,8 @@ extends pasted snippets with a link to a page showing this information. Here we 
     \end{tablenotes}
     \end{threeparttable}
     \caption{Fields collected from StackOverflow upon copy}
+    \label{tab:chrome-extension-fields}
 \end{table*}
-
-\subsection{Chrome Extension}
-The CodeStory Chrome extension mainly consists of a Content Script that is executed whenever a user visits a StackOverflow page. An event listener for the browser's \textit{copy event} is added and called whenever content from the page is copied to the clipboard.
-
-The listener first collects the required contextual information from the current page and saves it in a \textit{storyData} object whose fields are shown in Table ~\ref{tab:chrome-extension-fields}. This object is \texttt{POST}ed to the backend
-with a unique ID, the hash of the object combined with the current time, whenever a user copies content from StackOverflow. We ensure that the backend accepts cross-origin requests so that the Chrome extension can simply use \texttt{Ajax} calls.
 
 In order for our Atom package to be able to link to the contextual information, we include the ID in the clipboard content using the JavaScript clipboard API\footnote{https://developer.mozilla.org/en-US/docs/Web/API/ClipboardEvent}. The Atom package then uses the ID to form a URL which is included in the pasted content **Fig.**.
 
