@@ -851,6 +851,7 @@
 % \end{center}
 % \end@float}
 
+
 \def\@toappear{} % Default setting blank - commands below change this.
 \long\def\toappear#1{\def\@toappear{\parbox[b]{20pc}{\baselineskip 9pt#1}}}
 \def\toappearbox#1{\def\@toappear{\raisebox{5pt}{\framebox[20pc]{\parbox[b]{19pc}{#1}}}}}
