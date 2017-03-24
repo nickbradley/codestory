@@ -16,31 +16,34 @@ Finally, we collected opinions on the particular information of interest using t
 
 Considering the majority of neutral and positive responses to our pilot survey we felt confirmed that the idea behind CodeStory is valuable and we could continue our research. The single element that had a overly negative result in the survey was the \textit{Google search query leading to StackOverflow}. We consequently chose to not include this element in the implementation of CodeStory.
 
-\begin{table*}[t]
+\begin{table}[t]
     \centering
     \begin{threeparttable}
-    \begin{tabular*}{\textwidth}{ll}
+    \begin{tabular*}{\linewidth}{lr}
     \hline
-    \textbf{Element} & \textbf{Percentage of 3-5 ratings} \\
+    \textbf{Element} & \textbf{\% Ratings $\ge3$} \\
     \hline
-    Google search query leading to StackOverflow & 24\% \\
-    StackOverflow question URL & 76\% \\
-    StackOverflow question heading & 47\% \\
-    StackOverflow question content & 76\% \\
-    StackOverflow answer URL & 76\% \\
-    Time of access of StackOverflow page & 59\% \\
-    StackOverflow answer code snippet & 53\% \\
-    Entire StackOverflow answer & 47\% \\
-    StackOverflow answer rating & 59\% \\
-    StackOverflow answer acceptance status & 59\% \\
-    StackOverflow answer comments & 59\% \\
-    Other StackOverflow answers & 47\% \\
+    Google search query leading to SO & 24\% \\
+    SO question URL & 76\% \\
+    SO question heading & 47\% \\
+    SO question content & 76\% \\
+    SO answer URL & 76\% \\
+    Time of access of SO page & 59\% \\
+    SO answer code snippet & 53\% \\
+    Entire SO answer & 47\% \\
+    SO answer rating & 59\% \\
+    SO answer acceptance status & 59\% \\
+    SO answer comments & 59\% \\
+    Other SO answers & 47\% \\
     \hline
-    \end{tabular*}
-    \end{threeparttable}
+  \end{tabular*}
+  \begin{tablenotes}\footnotesize
+    \item \textit{SO = StackOverflow.}
+  \end{tablenotes}
+  \end{threeparttable}
     \caption{Elements of interest for survey rating}
     \label{tab:elements-of-interest}
-\end{table*}
+\end{table}
 
 \subsection{Study Description} \label{eval-description}
 
@@ -95,10 +98,9 @@ These two scenarios resulted in four treatments for our study:
 
 The study was performed with 8 developers among which 4 participants were graduate students and 4 were industry developers (> 4 years of practical experience with Java). With participants from different backgrounds we ensured generalizability of our study to both academia and industry. Due to time constraints we decided to assign each participant 2 code reviews (we assumed approximately 10 minutes for each code review). To avoid learning bias for the given scenarios and treatments, we decided to let each participant do one code review for each scenario: one with annotation and one without annotation. To further avoid learning bias, we ensured that 4 participants start with a code review with annotation and the other 4 start with a code review without annotation. Table~\ref{tab:study-outline} shows the outline of treatments and participants.
 
-\begin{table*}[t]
+\begin{table}[t]
     \centering
-    \begin{threeparttable}
-    \begin{tabular*}{\textwidth}{lll}
+    \begin{tabular}{lll}
     \hline
     \textbf{Participant} & \textbf{Treatment} & \textbf{Background} \\
     \hline
@@ -111,11 +113,10 @@ The study was performed with 8 developers among which 4 participants were gradua
     P7 & T2 + T3 & industry \\
     P8 & T2 + T3 & academia \\
     \hline
-    \end{tabular*}
-    \end{threeparttable}
+    \end{tabular}
     \caption{Study outline}
     \label{tab:study-outline}
-\end{table*}
+\end{table}
 
 For each participant we forked our bootstrap repository and created two pull requests with respect to their treatments. In the description of each pull request we asked the following questions:
 \begin{itemize}
@@ -130,30 +131,32 @@ In the instructions for the second pull request, participants were asked to comp
 
 We found two issues with our evaluation: (1) one participant (P4) did the pull requests in the opposite order and (2) another participant (P8) did not notice the CodeStory link in the diff. We consider (1) to be a minor issue that does not impact the results and (2) a major issue requiring us to \textit{ignore the results for P8} in the subsequent analysis.
 
-\begin{table*}[t]
+\begin{table}[t]
     \centering
     \begin{threeparttable}
-    \begin{tabular*}{\textwidth}{llllll}
+    \begin{tabular}{lccccr}
     \hline
-    \textbf{} & \textbf{T1} & \textbf{T2} & \textbf{T3} & \textbf{T4} & \textbf{CodeStory Rating} \\
+    & \multicolumn{5}{c}{\textbf{Rating (1-5)}} \\
+        \cline{2-6}
+    \textbf{Participant} & \textbf{T1} & \textbf{T2} & \textbf{T3} & \textbf{T4} & \textbf{Overall} \\
     \hline
-    P1  &   & 2 & 4 &   & 5 \\
-    P2  &   & 2 & 4 &   & 5 \\
-    P3  & 4 &   &   & 5 & 5 \\
-    P4  & 1 &   &   & 5 & 4 \\
-    P5  & 2 &   &   & 5 & 5 \\
-    P6  & 3 &   &   & 5 & 5 \\
-    P7  &   & 5 & 3 &   & 4 \\
-    P8* &   & 4 & 2 &   & 2 \\
+    P1  & - & 2 & 4 & - & 5 \\
+    P2  & - & 2 & 4 & - & 5 \\
+    P3  & 4 & - & - & 5 & 5 \\
+    P4  & 1 & - & - & 5 & 4 \\
+    P5  & 2 & - & - & 5 & 5 \\
+    P6  & 3 & - & - & 5 & 5 \\
+    P7  & - & 5 & 3 & - & 4 \\
+    P8* & - & 4 & 2 & - & 2 \\
     \hline
-    \end{tabular*}
+    \end{tabular}
     \begin{tablenotes}\footnotesize
       \item [*] Ignored in subsequent sections because participant did not notice the CodeStory tool.
     \end{tablenotes}
     \end{threeparttable}
     \caption{Survey results}
     \label{tab:survey-results}
-\end{table*}
+\end{table}
 
 \subsection{Impact for Code Review Tasks} \label{eval-impact}
 
@@ -171,7 +174,7 @@ Q3: The method is really small, though I believe that it was changed to consider
   \item \textbf{Scenario 1 with annotation (T3):}
 \textit{
 Q1: The purpose of the method is to parse a JSON file to an ArrayList of the custom object JsonLog. In the original version, the parsing fails because of an unconventional definition of the target Java type.
-Q2: The method changed in the definition of the target type which is necessary due to Java's type safety. The type itself as well as the generic of this type are now passed on to the Json parser Gson indirectly, by first instantiating a dummy TokenType with a generic of the target type and, second, by calling .getType() on this dummy object. 
+Q2: The method changed in the definition of the target type which is necessary due to Java's type safety. The type itself as well as the generic of this type are now passed on to the Json parser Gson indirectly, by first instantiating a dummy TokenType with a generic of the target type and, second, by calling .getType() on this dummy object.
 Q3: The change was made because java class objects cannot simply be passed on as parameters if they are modified by generics.
 }
   \item \textbf{Scenario 2 without annotation (T2):}
@@ -193,9 +196,17 @@ Q3: (...) the programmer needed to implement a new feature or quirk to the versi
 \textbf{Analyzing the optional comments of the final survey}, we noticed that one participant missed exactly the element of information that we neglected after our pilot survey, the \textit{Google search query leading to StackOverflow} (see section~\ref{eval-survey}): \textit{The search term(s) which led the programmer to that version comparison StackOverflow question could have been useful for explaining why s/he made the change. Search terms such as "java version comparison algorithm", "java version comparison best practice", and "java version comparison pre-release metadata" might all lead to that question, but convey different intents/requirements.} Our interpretation is that the participants in the pilot survey might not have fully understood what we referred to with this element and they would most likely have considered it more useful in an actual code review.
 
 \subsection{Threads to Validity} \label{eval-threats}
+While we tried to reduce the number of factors that could impact the validity of our findings there is a chance that our results may not be representative of the actual utility of CodeStory.
+
+We evaluated the usefulness of the rationale captured by CodeStory for code review tasks. We requested participants view very short diffs in pull requests on a nearly empty bootstrap repository. This was intentional to keep the tasks short and focused but are not entirely representitive of real code reviews.
+
+There is a potential for bias among participants and tasks. To mitigate this, we used four treatments and assigned two participants to each. One participant was from industry and the other was from academia to futher reduce bias. Additionally, to control bias among treatments, the first pull request in two of the treatments contained a CodeStory annotation while the other two had the annotation in the last pull request. In all treatments the diffs were different from each other to account for learning bias. Unfortunately, this meant that we could not directly account for variance among task but this effect should be reduced by assigning each treatment to two participants. Despite these controls and our positive results, it is possible that CodeStory would not be found favorable in general.
+
+% \textbf{External threats}
 
 % problems 1 and 2 described
 % what is higher quality? does this really lead to higher software quality?
+
 % does not generalize to comprehension tasks
 % how we conducted the study
 % does the evaluation directly answer our main question?
@@ -203,7 +214,6 @@ Q3: (...) the programmer needed to implement a new feature or quirk to the versi
 % interpretation of comments is subjective
 % may not have captured all views/interpretations/feelings (question was just "do you consider it useful")
 % scenarios are not realistic/practical/representative (generalizability) => diffs are too short and just a almost empty bootstrap repository
-% did our questions really determine quality of code reviews?
 % did not evaluate our tool but only the "results of our tool"
 
 \end{document}
