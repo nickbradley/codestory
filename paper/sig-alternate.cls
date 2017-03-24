@@ -1,5 +1,6 @@
 % Commented out section with text "This section (written by KBT)"
 % Commented out "Need Copyright Year and Copyright Data"
+% Commented out "copyrightspace" in line 604
 
 % SIG-ALTERNATE.CLS - VERSION 2.5
 % "COMPATIBLE" WITH THE "ACM_PROC_ARTICLE-SP.CLS" V3.2SP
@@ -601,7 +602,7 @@
  \let\maketitle\relax
  \let\@maketitle\relax
  \gdef\@thanks{}\gdef\@author{}\gdef\@title{}\gdef\@subtitle{}\let\thanks\relax
- \@copyrightspace}
+ %\@copyrightspace}
 
 %% CHANGES ON NEXT LINES
 \newif\if@ll % to record which version of LaTeX is in use
