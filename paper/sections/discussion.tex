@@ -2,11 +2,44 @@
 
 \begin{document}
 
+After describing the approach (section~\ref{sec:approach}), implementation (section~\ref{sec:implementation}) and evaluation (section~\ref{sec:evaluation}) of CodeStory, we now discuss the potentials and drawbacks of the concept behind our tool.
+
+\textbf{Potentials.}
+Our evaluation showed that CodeStory can significantly improve the \textit{quality of code reviews}. While most of the participants of our pilot survey (section~\ref{eval-survey}) were only neutral or slightly positive about the idea of our tool, participants of our main study (sections~\ref{eval-description} and~\ref{eval-impact}) gave us almost entirely positive feedback: our tool made their code review tasks significantly easier and they commonly rated it as very useful. By comparing the code review comments (qualitative analysis) and analyzing the results of the final survey (quantitative analysis) we could clearly see that participants had \textit{better understanding} of the code changes they were confronted with and could therefore perform the code review tasks much better. With our study scenario of code reviews as one task instance in the domain of program understanding, and given the assumption that high quality code reviews lead to better overall software quality, we can conclude that the concept behind CodeStory has the \textit{potential of increasing software quality as a whole}. Besides the potentials in terms of program understanding and software quality, we can imagine other benefits tracking the described contextual information. For example, our dataset could be used for \textit{analysis tasks inside a software company} to identify patterns among their developers and their decisions in order to improve overall development performance within the company. Furthermore, multiple CodeStory datasets combined could become very powerful, providing valuable information about \textit{developer behavior on a global level}. In particular, information on interaction patterns with StackOverflow and evaluation of copied contents in production code could be very useful for researchers, developers and managers.
+
+\textbf{Drawbacks.}
+One negative aspect considering the current implementation of CodeStory is its \textit{manipulation of the operating system's clipboard}. While we intended to design our tool as transparent as possible, we consider adding the ID of the associated CodeStory to the OS clipboard a major interference in the developer's environment. This issue could be mitigated by implementing a user management that is shared throughout all components of CodeStory (Chrome extension, backend, Atom package) instead. Furthermore, there may be a \textit{performance impact} using our tool, since the tool requires access to the CodeStory server. This issue could be mitigated by hosting that server locally and minimizing the impact on connection problems (e.g. by simply doing nothing upon failure). While we consider the \textit{footprint of CodeStory} minimal, one could still argue that sudden "comments out of nowhere" may be confusing for developers and may even clutter a codebase, especially when used inconsistently within a company. Countering this argument, we would reflect the benefits of using CodeStory against this issue. Another concern might be \textit{social and privacy issues:} a feeling of "being tracked" might arise among developers using CodeStory. However, we are not claiming that our tool is feasible in any environment and its benefits should always be contrasted with its drawbacks.
+ 
 % Talk about some of the feedback from the survey
 % Drawbacks of the tool
 % change in workflow
 % privacy
 % data mining (the codestory DB)
 % Good for "micro" decisions; not so useful for "macro" decisions
+
+
+% summarize results of study
+%% Comparing code review comments
+%% Analyzing the results of the final survey
+%% Analyzing the optional comments of the final survey
+
+% drawbacks of the tool
+
+%% could be slow
+%% depends on internet connection
+
+%% change in workflow (e.g. could be surprised by comment)
+%% code could get cluttered
+%% could be used inconsistently within an organization
+%% snippets are hard to combine into global picture for design rationale
+
+%% was tested only in specific environment
+
+
+
+%% social/privacy issues (feeling "being watched")
+
+% possible extra value in having the CodeStory dataset (data mining)
+% login version and content in clipboard issue
 
 \end{document}
